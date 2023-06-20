@@ -5,17 +5,23 @@ public class Main {
 
   public static void main(String[] args) {
     SwingUtilities.invokeLater(() -> {
-      TelaHome telaHome = new TelaHome(
-        new JButton(),
-        new JFrame(),
-        false,
-        null,
-        new BarraNavegacao(),
-        false,
-        "null",
-        new JFrame()
-      );
+      TelaHome telaHome = new TelaHome(new JButton(),
+                                      new JFrame(),
+                                      false,
+                                      null,
+                                      new BarraNavegacao(),
+                                      false,
+                                      "null",
+                                      new JFrame());
       telaHome.getFrameHome().setVisible(true);
+
+      TelaLoginCadastro telaLoginCadastro = new TelaLoginCadastro(false,
+                                                                  null, 
+                                                                  new BarraNavegacao(), 
+                                                                  false, 
+                                                                  "null", 
+                                                                  new JFrame());
+      telaLoginCadastro.getFrameLoginCadastro().setVisible(true);
     });
   }
 }

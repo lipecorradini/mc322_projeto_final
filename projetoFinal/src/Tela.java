@@ -12,8 +12,12 @@ public abstract class Tela {
     public String titulo;
     public JFrame frame;
 
-    public Tela(boolean mostrarBarraNavegacao, Color backgroundColor, BarraNavegacao barraNavegacao,
-            boolean estaLogado, String titulo, JFrame frame) {
+    public Tela(boolean mostrarBarraNavegacao, 
+                Color backgroundColor, 
+                BarraNavegacao barraNavegacao,
+                boolean estaLogado, 
+                String titulo, 
+                JFrame frame) {
         this.mostrarBarraNavegacao = true;
         this.backgroundColor = backgroundColor;
         this.barraNavegacao = barraNavegacao;

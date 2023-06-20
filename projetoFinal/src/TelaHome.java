@@ -7,16 +7,14 @@ public class TelaHome extends Tela {
   public JFrame frameHome;
 
   //Construtor
-  public TelaHome(
-    JButton botaoExplorar,
-    JFrame frameHome,
-    boolean mostrarBarraNavegacao,
-    Color backgroundColor,
-    BarraNavegacao barraNavegacao,
-    boolean estaLogado,
-    String titulo,
-    JFrame frame
-  ) {
+  public TelaHome(JButton botaoExplorar,
+                  JFrame frameHome,
+                  boolean mostrarBarraNavegacao,
+                  Color backgroundColor,
+                  BarraNavegacao barraNavegacao,
+                  boolean estaLogado,
+                  String titulo,
+                  JFrame frame) {
     super(mostrarBarraNavegacao, backgroundColor, barraNavegacao, estaLogado, titulo, frame);
     this.frameHome = new JFrame();
     this.frameHome.setSize(390, 844);
