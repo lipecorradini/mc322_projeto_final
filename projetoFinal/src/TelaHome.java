@@ -35,7 +35,7 @@ public class TelaHome extends Tela {
         @Override
         public void paintComponent(Graphics g){
             super.paintComponent(g);
-            Image imagem = new ImageIcon("lib/Home.jpg").getImage();
+            Image imagem = new ImageIcon("/home/p8pablo/mc322_projeto_final/projetoFinal/lib/Home.jpg").getImage();
             g.drawImage(imagem, 0, 0, getWidth(), getHeight(), this);
         }
     };
