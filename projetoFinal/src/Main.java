@@ -1,19 +1,25 @@
 
+
+
 import javax.swing.*;
 
 public class Main {
 
   public static void main(String[] args) {
     SwingUtilities.invokeLater(() -> {
-      TelaHome telaHome = new TelaHome(new JButton(),
-                                      new JFrame(),
+      TelaHome telaHome = new TelaHome(
                                       false,
                                       null,
                                       new BarraNavegacao(),
                                       false,
                                       "null",
                                       new JFrame());
-      telaHome.getFrameHome().setVisible(true);
+      //configuracao frame exibicao
+      JFrame frameExibicao = new JFrame();
+      frameExibicao.setSize(470, 930);
+      frameExibicao.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frameExibicao.add(telaHome.getLayeredPane());
+      frameExibicao.setVisible(true);
 
       TelaLoginCadastro telaLoginCadastro = new TelaLoginCadastro(false,
                                                                   null, 
@@ -23,5 +29,7 @@ public class Main {
                                                                   new JFrame());
       telaLoginCadastro.getFrameLoginCadastro().setVisible(true);
     });
+    
+
   }
 }
