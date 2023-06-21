@@ -16,8 +16,8 @@ public class Main extends JFrame {
         framePrincipal = new JFrame();
 
         //instanciando telas
-        telaHome = new TelaHome(false);
-        telaLoginCadastro = new TelaLoginCadastro(false, null);
+        telaHome = new TelaHome(false, this);
+        telaLoginCadastro = new TelaLoginCadastro(false, this);
 
         //Adicionando telas ao painel 
         painelPrincipal.add(telaHome.getLayeredPane(), "Home");
