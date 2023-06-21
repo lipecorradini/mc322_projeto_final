@@ -8,11 +8,12 @@ public class TelaCarrinho extends Tela {
 
     // Construtor
     public TelaCarrinho(boolean mostrarBarraNavegacao,
-            Color backgroundColor) {
+            BarraNavegacao barraNavegacao) {
         super(mostrarBarraNavegacao,
-                backgroundColor);
+                barraNavegacao);
 
         // Definção de Layout
+        barraNavegacao = new BarraNavegacao();
         layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(390, 844));
 

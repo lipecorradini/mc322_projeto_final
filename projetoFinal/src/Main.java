@@ -19,7 +19,7 @@ public class Main {
             TelaCarrinho telaCarrinho = new TelaCarrinho(false, null);
             // frameExibicao.add(telaCarrinho.getLayeredPane());
 
-            TelaEssentials telaEssentials = new TelaEssentials(false, null);
+            TelaEssentials telaEssentials = new TelaEssentials(true, null);
             frameExibicao.add(telaEssentials.getEssentialsPane());
         });
 

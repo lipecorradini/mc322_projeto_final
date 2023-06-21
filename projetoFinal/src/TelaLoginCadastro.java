@@ -13,8 +13,8 @@ public class TelaLoginCadastro extends Tela {
 
     //Constructor
     public TelaLoginCadastro(boolean mostrarBarraNavegacao,
-                            Color backgroundColor) {
-        super(mostrarBarraNavegacao, backgroundColor);
+                            BarraNavegacao barraNavegacao) {
+        super(mostrarBarraNavegacao, barraNavegacao);
 
         paneCamadasLoginCadastro = new JLayeredPane();
         paneCamadasLoginCadastro.setPreferredSize(new Dimension(390, 844));
@@ -79,6 +79,9 @@ public class TelaLoginCadastro extends Tela {
         paneCamadasLoginCadastro.add(painelLoginCadastro, Integer.valueOf(1));
         paneCamadasLoginCadastro.add(botaoCadastro, Integer.valueOf(2));
         paneCamadasLoginCadastro.add(botaoLogin, Integer.valueOf(3));
+        if (mostrarBarraNavegacao) {
+            paneCamadasLoginCadastro.add(barraNavegacao.getBarraNavPanel(), Integer.valueOf(3));
+        }
     }
 
     public JLayeredPane getPainelLoginCadastro() {

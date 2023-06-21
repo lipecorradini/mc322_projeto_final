@@ -9,9 +9,10 @@ public class TelaEssentials extends Tela {
     public JButton buttonBrownTee;
 
     //Construtor
-    public TelaEssentials(boolean mostrarBarraNavegacao, Color backgroundColor){
-        super(mostrarBarraNavegacao, backgroundColor);
+    public TelaEssentials(boolean mostrarBarraNavegacao, BarraNavegacao barraNavegacao){
+        super(mostrarBarraNavegacao, barraNavegacao);
         // Definção de Layout
+        barraNavegacao = new BarraNavegacao();
 		essentialsPane = new JLayeredPane();
 		essentialsPane.setPreferredSize(new Dimension(390, 844));
 
@@ -60,12 +61,6 @@ public class TelaEssentials extends Tela {
         buttonOffwhiteTee.setBounds(65, 565, 75, 20);
         buttonWhiteTee.setBounds(251, 565, 75, 20);
 
-        //Retira borda botao
-        buttonBlackTee.setBorderPainted(true);
-        buttonBlackTee.setBackground(new Color(0, 0, 0, 0));
-        buttonBrownTee.setBorderPainted(true);
-        buttonOffwhiteTee.setBorderPainted(true);
-        buttonWhiteTee.setBorderPainted(true);
 
         // Adiciona o painel da imagem e o botão ao JLayeredPane em diferentes camadas
 		essentialsPane.add(painelImagemFundo, Integer.valueOf(0)); // Camada mais baixa
@@ -73,7 +68,10 @@ public class TelaEssentials extends Tela {
 		essentialsPane.add(buttonBlackTee, Integer.valueOf(2));
         essentialsPane.add(buttonBrownTee, Integer.valueOf(2));
         essentialsPane.add(buttonOffwhiteTee, Integer.valueOf(2));
-        essentialsPane.add(buttonWhiteTee, Integer.valueOf(2)); // Camada mais alta
+        essentialsPane.add(buttonWhiteTee, Integer.valueOf(2)); 
+        if (mostrarBarraNavegacao) {
+            essentialsPane.add(barraNavegacao.getBarraNavPanel(), Integer.valueOf(2));
+        }// Camada mais alta
     }
 
     public JLayeredPane getEssentialsPane() {

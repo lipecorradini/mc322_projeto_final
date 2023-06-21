@@ -1,14 +1,13 @@
-import java.awt.*;
 
 public abstract class Tela{
     public boolean mostrarBarraNavegacao;
-    public Color backgroundColor;
+    public BarraNavegacao barraNavegacao;
     public String titulo;
 
     public Tela(boolean mostrarBarraNavegacao, 
-                Color backgroundColor) {
+                BarraNavegacao barraNavegacao) {
         this.mostrarBarraNavegacao = true;
-        this.backgroundColor = backgroundColor;
+        this.barraNavegacao = new BarraNavegacao();
     }
 
     public boolean getMostrarBarraNavegacao() {
@@ -17,14 +16,6 @@ public abstract class Tela{
 
     public void setMostrarBarraNavegacao(boolean mostrarBarraNavegacao) {
         this.mostrarBarraNavegacao = mostrarBarraNavegacao;
-    }
-
-    public Color getBackgroundColor() {
-        return backgroundColor;
-    }
-
-    public void setBackgroundColor(Color backgroundColor) {
-        this.backgroundColor = backgroundColor;
     }
 
     public String getTitulo() {
@@ -38,4 +29,13 @@ public abstract class Tela{
     public boolean isMostrarBarraNavegacao() {
         return this.mostrarBarraNavegacao;
     }
+
+    public BarraNavegacao getBarraNavegacao() {
+        return this.barraNavegacao;
+    }
+
+    public void setBarraNavegacao(BarraNavegacao barraNavegacao) {
+        this.barraNavegacao = barraNavegacao;
+    }
+
 }
