@@ -38,25 +38,18 @@ public class TelaCarrinho extends Tela {
         botaoFinalizarCompra.setBounds(91, 667, 208, 39);
         botaoFinalizarCompra.setBorderPainted(false);
 
-        // Criando a imagem equivalente ao total
-        // JPanel imagemPalavraTotal = new JPanel() {
-        // @Override
-        // public void paintComponent(Graphics g) {
-        // Image imagem = new ImageIcon("lib/Total.jpg").getImage();
-        // g.drawImage(imagem, 41, 594, getWidth(), getHeight(), this);
-        // }
-        // };
+        // Criando a imagem da palavra total
+        ImageIcon imagemPalavraTotal = new ImageIcon("lib/Total.jpg");
+        JLabel labelImagemSobreposta = new JLabel(imagemPalavraTotal);
+        labelImagemSobreposta.setBounds(41, 594, imagemPalavraTotal.getIconWidth(), imagemPalavraTotal.getIconHeight());
 
         // Painel para o tamanho da imagem de fundo
         painelImagem.setBounds(0, 0, 390, 844);
 
-        // Painel para o tamanho da imagem do total
-        // imagemPalavraTotal.setBounds(41, 594, 67, 15); // nao esta funcionando
-
         // Adiciona o painel da imagem e o botão ao JLayeredPane em diferentes camadas
         layeredPane.add(painelImagem, Integer.valueOf(0)); // Camada mais baixa
         layeredPane.add(botaoFinalizarCompra, Integer.valueOf(1));
-        // layeredPane.add(imagemPalavraTotal, Integer.valueOf(2));
+        layeredPane.add(labelImagemSobreposta, Integer.valueOf(1));
 
     }
 
