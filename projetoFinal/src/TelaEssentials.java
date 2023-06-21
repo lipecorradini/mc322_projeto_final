@@ -16,23 +16,38 @@ public class TelaEssentials extends Tela {
 		essentialsPane.setPreferredSize(new Dimension(390, 844));
 
 		// Painel da imagem de fundo
-		JPanel painelImagem = new JPanel() {
+		JPanel painelImagemFundo = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				Image imagem = new ImageIcon(
-						"mc322_projeto_final/projetoFinal/lib/Essentials.jpg")
+						"projetoFinal/lib/Essentials.jpg")
 						.getImage();
 				g.drawImage(imagem, 0, 0, getWidth(), getHeight(), this);
 			}
 		};
 
-		// Painel para o tamanho da imagem
-		painelImagem.setBounds(0, 0, 390, 844);
+        //Painel para elementos de preview
+        JPanel painelImagemPreview = new JPanel() {
+			@Override
+			public void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				Image imagem = new ImageIcon(
+						"projetoFinal/lib/tees preview.png")
+						.getImage();
+				g.drawImage(imagem, 0, 0, getWidth(), getHeight(), this);
+			}
+		};
+        painelImagemPreview.setBackground(new Color(0,0,0,0));
+
+		// Config para o tamanho da imagem
+		painelImagemFundo.setBounds(0, 0, 390, 844);
+        painelImagemPreview.setBounds(28, 245, 334, 354);
+
 
         // Cria o botão
 		ImageIcon imageIcon = new ImageIcon(
-            "mc322_projeto_final/projetoFinal/lib/Botao Essential.jpg");
+            "projetoFinal/lib/botao essential.png");
         buttonBlackTee = new JButton(imageIcon);
         buttonBrownTee = new JButton(imageIcon);
         buttonOffwhiteTee = new JButton(imageIcon);
@@ -40,23 +55,25 @@ public class TelaEssentials extends Tela {
         
 
         // Posiciona o botao
-        buttonBlackTee.setBounds(72, 361, 75, 19);
-        buttonBrownTee.setBounds(262, 361, 75, 19);
-        buttonOffwhiteTee.setBounds(72, 573, 75, 19);
-        buttonWhiteTee.setBounds(262, 573, 75, 19);
+        buttonBlackTee.setBounds(65, 358, 75, 20);
+        buttonBrownTee.setBounds(251, 358, 75, 20);
+        buttonOffwhiteTee.setBounds(65, 565, 75, 20);
+        buttonWhiteTee.setBounds(251, 565, 75, 20);
 
         //Retira borda botao
-        buttonBlackTee.setBorderPainted(false);
-        buttonBrownTee.setBorderPainted(false);
-        buttonOffwhiteTee.setBorderPainted(false);
-        buttonWhiteTee.setBorderPainted(false);
+        buttonBlackTee.setBorderPainted(true);
+        buttonBlackTee.setBackground(new Color(0, 0, 0, 0));
+        buttonBrownTee.setBorderPainted(true);
+        buttonOffwhiteTee.setBorderPainted(true);
+        buttonWhiteTee.setBorderPainted(true);
 
         // Adiciona o painel da imagem e o botão ao JLayeredPane em diferentes camadas
-		essentialsPane.add(painelImagem, Integer.valueOf(0)); // Camada mais baixa
-		essentialsPane.add(buttonBlackTee, Integer.valueOf(1));
-        essentialsPane.add(buttonBrownTee, Integer.valueOf(1));
-        essentialsPane.add(buttonOffwhiteTee, Integer.valueOf(1));
-        essentialsPane.add(buttonWhiteTee, Integer.valueOf(1)); // Camada mais alta
+		essentialsPane.add(painelImagemFundo, Integer.valueOf(0)); // Camada mais baixa
+        essentialsPane.add(painelImagemPreview, Integer.valueOf(1));
+		essentialsPane.add(buttonBlackTee, Integer.valueOf(2));
+        essentialsPane.add(buttonBrownTee, Integer.valueOf(2));
+        essentialsPane.add(buttonOffwhiteTee, Integer.valueOf(2));
+        essentialsPane.add(buttonWhiteTee, Integer.valueOf(2)); // Camada mais alta
     }
 
     public JLayeredPane getEssentialsPane() {
