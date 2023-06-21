@@ -22,7 +22,7 @@ public class TelaHome extends Tela {
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				Image imagem = new ImageIcon(
-						"/home/p8pablo/mc322_projeto_final/projetoFinal/lib/Home.jpg")
+						"mc322_projeto_final/projetoFinal/lib/Home.jpg")
 						.getImage();
 				g.drawImage(imagem, 0, 0, getWidth(), getHeight(), this);
 			}
@@ -33,7 +33,7 @@ public class TelaHome extends Tela {
 
 		// Cria o botão
 		ImageIcon imageIcon = new ImageIcon(
-				"/home/p8pablo/mc322_projeto_final/projetoFinal/lib/Botao_explore.jpg");
+				"mc322_projeto_final/projetoFinal/lib/Botao_explore.jpg");
 		botaoExplorar = new JButton(imageIcon);
 
 		// Posiciona o botao
