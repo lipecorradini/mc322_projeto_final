@@ -20,7 +20,14 @@ public class Main {
             // frameExibicao.add(telaCarrinho.getLayeredPane());
 
             TelaEssentials telaEssentials = new TelaEssentials(true, null);
-            frameExibicao.add(telaEssentials.getEssentialsPane());
+            // frameExibicao.add(telaEssentials.getEssentialsPane());
+
+            ImageIcon imagemBlusaTeste = new ImageIcon("lib/blusaTeste.jpg");
+            ImageIcon imagemDescricaoTeste = new ImageIcon("lib/TESTEdescricao.jpg");
+            ImageIcon imagemTituloTeste = new ImageIcon("lib/EssentialS_ BLack TEE.jpg");
+
+            TelaProduto telaProduto = new TelaProduto(false, null, imagemBlusaTeste, imagemTituloTeste, imagemDescricaoTeste);
+            frameExibicao.add(telaProduto.getLayeredPane());
         });
 
     }
