@@ -8,9 +8,9 @@ public class TelaHome extends Tela {
 
 	// Construtor
 	public TelaHome(boolean mostrarBarraNavegacao,
-					Color backgroundColor) {
+					BarraNavegacao barraNavegacao) {
 		super(mostrarBarraNavegacao,
-			backgroundColor);
+			barraNavegacao);
 
 		// Definção de Layout
 		layeredPane = new JLayeredPane();
@@ -42,6 +42,9 @@ public class TelaHome extends Tela {
 		// Adiciona o painel da imagem e o botão ao JLayeredPane em diferentes camadas
 		layeredPane.add(painelImagem, Integer.valueOf(0)); // Camada mais baixa
 		layeredPane.add(botaoExplorar, Integer.valueOf(1)); // Camada mais alta
+    if (mostrarBarraNavegacao) {
+      layeredPane.add(barraNavegacao.getBarraNavPanel(), Integer.valueOf(1));
+    }
 	}
 
 	public JLayeredPane getLayeredPane() {
