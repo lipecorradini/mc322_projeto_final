@@ -126,17 +126,21 @@ public class TelaLoginCadastro extends Tela implements ActionListener{
             Scanner scanner = new Scanner(arquivo);
             int i = 0;
             while (scanner.hasNextLine()) {
-                i++;
-                if (i == 1) { //looking at first line, t.i., username
-                    if (tentativaUsername == scanner.nextLine()) {
+                if (i == 0) { //looking at first line, t.i., username
+                    if (tentativaUsername.equals(scanner.nextLine())) {
+                        System.out.println("IF 1");
+                        i++;
                         continue;
                     } else {
+                        System.out.println("IF 2");
                         return false;
                     }
                 } else { //looking at second line, t.i., passowrd
-                    if (tentativaPassowrd == scanner.next()) {
+                    if (tentativaPassowrd.equals(scanner.next())) {
+                        System.out.println("IF 3");
                         return true;
                     } else {
+                        System.out.println("IF 4");
                         return false;
                     }
                 }
@@ -162,16 +166,21 @@ public class TelaLoginCadastro extends Tela implements ActionListener{
         if (e.getSource() == botaoLogin) {
             String tentativaUser = textFieldUsuario.getText();
             String tentativaSenha = String.valueOf(passwordFieldSenha.getPassword());
-            boolean temp = checksUser(tentativaUser, tentativaSenha);
-            if (temp) {
-                System.out.println("LOGIN FEITO");
+            if (checksUser(tentativaUser, tentativaSenha)) {
+                JOptionPane.showMessageDialog(null, "Login feito com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                app.mostrarTela("Essentials");
             } else {
-                System.out.println("DEU RUIM");
+                JOptionPane.showMessageDialog(null, "A combinação de nome de usuário de senha não corresopndem à nenhum usuário cadastrado. Por favor tente novamente mais tarde.", "Falha no Login", JOptionPane.INFORMATION_MESSAGE);
             }
         } else if (e.getSource() == botaoCadastro) {
             String novoUser = textFieldUsuario.getText();
             String novoSenha = String.valueOf(passwordFieldSenha.getPassword());
-            boolean temp = createUser(novoUser, novoSenha);
+            if (createUser(novoUser, novoSenha)) {
+                JOptionPane.showMessageDialog(null, "Usuário cadastrado com succeso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                app.mostrarTela("Essentials");
+            } else {
+                JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o usuário. Por favor tente novamente mais tarde.", "Falha no Cadastro", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }
 }

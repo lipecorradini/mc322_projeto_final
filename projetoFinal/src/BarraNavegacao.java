@@ -15,11 +15,11 @@ public class BarraNavegacao {
         barraNavPanel.setBackground(new Color(0, 0, 0, 0));
 
         // Definição dos botões
-        ImageIcon homeIcon = new ImageIcon("projetoFinal/lib/icon _house_.png");
+        ImageIcon homeIcon = new ImageIcon("lib/iconeHome.jpg");
         botaoHome = new JButton(homeIcon);
-        ImageIcon perfilIcon = new ImageIcon("projetoFinal/lib/icon _profile circle_.png");
+        ImageIcon perfilIcon = new ImageIcon("lib/iconePerfil.jpg");
         botaoPerfil = new JButton(perfilIcon);
-        ImageIcon carrinhoIcon = new ImageIcon("projetoFinal/lib/icon _shopping cart_.png");
+        ImageIcon carrinhoIcon = new ImageIcon("lib/iconeCarrinho.jpg");
         botaoCarrinho = new JButton(carrinhoIcon);
 
         //Definição das posições dos botões
@@ -64,9 +64,5 @@ public class BarraNavegacao {
     public void setBotaoCarrinho(JButton botaoCarrinho) {
         this.botaoCarrinho = botaoCarrinho;
     }
-
-
-
-        
 }
 

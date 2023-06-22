@@ -72,7 +72,7 @@ public class TelaHome extends Tela implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == botaoExplorar) {
-			app.mostrarTela("Login");
+			app.mostrarTela("Essentials");
 		}
 	}
 }

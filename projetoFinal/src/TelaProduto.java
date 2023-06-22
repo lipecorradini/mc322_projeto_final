@@ -2,12 +2,12 @@ import java.awt.*;
 import javax.swing.*;
 
 public class TelaProduto extends Tela {
-    
     private ImageIcon blusaProduto;
     private ImageIcon tituloProduto;
     private ImageIcon descricaoProduto;
     private int precoBlusa;
     private char tamanhoBlusa;
+    public Main app;
     //private BarraTamanho barraTamanho
     // barra com 3 botoes de p, m, g
 
@@ -16,14 +16,19 @@ public class TelaProduto extends Tela {
     public JButton botaoTamanhoM;
     public JButton botaoTamanhoG;
 
-    public TelaProduto(boolean mostrarBarraNavegacao, BarraNavegacao barraNavegacao, ImageIcon blusaProduto, ImageIcon tituloProduto, ImageIcon descricaoProduto){
+    public TelaProduto(boolean mostrarBarraNavegacao, 
+                        ImageIcon blusaProduto, 
+                        ImageIcon tituloProduto, 
+                        ImageIcon descricaoProduto,
+                        Main app){
         
-        super(mostrarBarraNavegacao, barraNavegacao);
+        super(mostrarBarraNavegacao);
         this.blusaProduto = blusaProduto;
         this.tituloProduto = tituloProduto;
         this.descricaoProduto = descricaoProduto;
         this.precoBlusa = 100;
         this.tamanhoBlusa = 'd'; // comeca como default
+        this.app = app;
 
         // Definicao do layout do layeredPane
         paneTelaProduto = new JLayeredPane();
