@@ -1,7 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
-public class TelaLoginCadastro extends Tela {
+public class TelaLoginCadastro extends Tela implements ActionListener{
     public JLayeredPane paneCamadasLoginCadastro;
     public JPanel painelLoginCadastro;
     public JTextField textFieldUsuario;
@@ -10,11 +17,14 @@ public class TelaLoginCadastro extends Tela {
     public JButton botaoCadastro;
     public JLabel labelUsuario;
     public JLabel labelSenha;
+    public Main app;
+    public boolean mostrarBarraNavegacao;
 
     //Constructor
     public TelaLoginCadastro(boolean mostrarBarraNavegacao,
-                            BarraNavegacao barraNavegacao) {
-        super(mostrarBarraNavegacao, barraNavegacao);
+                            Main app) {
+        super(mostrarBarraNavegacao);
+        this.app = app;
 
         paneCamadasLoginCadastro = new JLayeredPane();
         paneCamadasLoginCadastro.setPreferredSize(new Dimension(390, 844));
@@ -70,6 +80,8 @@ public class TelaLoginCadastro extends Tela {
         botaoCadastro = new JButton(iconImagemBotaoCadastro);
         botaoLogin = new JButton(iconImagemBotaoLogin);
         botaoCadastro.setBorderPainted(false);
+        botaoCadastro.addActionListener(this);
+        botaoLogin.addActionListener(this);
         botaoLogin.setBorderPainted(false);
         botaoCadastro.setBounds(123, 454, 143, 47);
         botaoLogin.setBounds(123, 520, 143, 47);
@@ -79,12 +91,87 @@ public class TelaLoginCadastro extends Tela {
         paneCamadasLoginCadastro.add(painelLoginCadastro, Integer.valueOf(1));
         paneCamadasLoginCadastro.add(botaoCadastro, Integer.valueOf(2));
         paneCamadasLoginCadastro.add(botaoLogin, Integer.valueOf(3));
-        if (mostrarBarraNavegacao) {
-            paneCamadasLoginCadastro.add(barraNavegacao.getBarraNavPanel(), Integer.valueOf(3));
-        }
     }
 
     public JLayeredPane getPainelLoginCadastro() {
         return this.paneCamadasLoginCadastro;
+    }
+
+    public boolean createUser(String username, String password) {
+        try {
+            String nomeNovoArquivo = "users/" + username + ".txt";
+            File arquivo = new File(nomeNovoArquivo);
+            if (arquivo.createNewFile()) {
+                try {
+                    FileWriter editorArquivo = new FileWriter(nomeNovoArquivo);
+                    editorArquivo.write(username + "\n" + password);
+                    editorArquivo.close();
+                    return true;
+                } catch (IOException f) {
+                    f.printStackTrace();
+                    return false;
+                } 
+            } else {
+                return false;
+            }
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+    public boolean checksUser(String tentativaUsername, String tentativaPassowrd) {
+        try {
+            String nomeArquivo = "users/" + tentativaUsername + ".txt";
+            File arquivo = new File(nomeArquivo);
+            Scanner scanner = new Scanner(arquivo);
+            int i = 0;
+            while (scanner.hasNextLine()) {
+                i++;
+                if (i == 1) { //looking at first line, t.i., username
+                    if (tentativaUsername == scanner.nextLine()) {
+                        continue;
+                    } else {
+                        return false;
+                    }
+                } else { //looking at second line, t.i., passowrd
+                    if (tentativaPassowrd == scanner.next()) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return false;
+    }
+
+    public void alteraVisibilidade(boolean bool) {
+        if (bool == true) {
+            paneCamadasLoginCadastro.setVisible(true);
+        } else {
+            paneCamadasLoginCadastro.setVisible(false);
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == botaoLogin) {
+            String tentativaUser = textFieldUsuario.getText();
+            String tentativaSenha = String.valueOf(passwordFieldSenha.getPassword());
+            boolean temp = checksUser(tentativaUser, tentativaSenha);
+            if (temp) {
+                System.out.println("LOGIN FEITO");
+            } else {
+                System.out.println("DEU RUIM");
+            }
+        } else if (e.getSource() == botaoCadastro) {
+            String novoUser = textFieldUsuario.getText();
+            String novoSenha = String.valueOf(passwordFieldSenha.getPassword());
+            boolean temp = createUser(novoUser, novoSenha);
+        }
     }
 }

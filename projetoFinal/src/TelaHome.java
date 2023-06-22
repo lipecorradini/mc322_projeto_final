@@ -1,16 +1,19 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class TelaHome extends Tela {
-
+public class TelaHome extends Tela implements ActionListener{
+	public boolean mostrarBarraNavegacao;
 	public JLayeredPane layeredPane;
 	public JButton botaoExplorar;
+	public Main app;
 
 	// Construtor
 	public TelaHome(boolean mostrarBarraNavegacao,
-					BarraNavegacao barraNavegacao) {
-		super(mostrarBarraNavegacao,
-			barraNavegacao);
+					Main app) {
+		super(mostrarBarraNavegacao);
+		this.app = app;
 
 		// Definção de Layout
 		layeredPane = new JLayeredPane();
@@ -21,9 +24,7 @@ public class TelaHome extends Tela {
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				Image imagem = new ImageIcon(
-						"mc322_projeto_final/projetoFinal/lib/Home.jpg")
-						.getImage();
+				Image imagem = new ImageIcon("lib/Home.jpg").getImage();
 				g.drawImage(imagem, 0, 0, getWidth(), getHeight(), this);
 			}
 		};
@@ -32,19 +33,16 @@ public class TelaHome extends Tela {
 		painelImagem.setBounds(0, 0, 390, 844);
 
 		// Cria o botão
-		ImageIcon imageIcon = new ImageIcon(
-				"mc322_projeto_final/projetoFinal/lib/Botao_explore.jpg");
+		ImageIcon imageIcon = new ImageIcon("lib/Botao_explore.jpg");
 		botaoExplorar = new JButton(imageIcon);
 
 		// Posiciona o botao
 		botaoExplorar.setBounds(118, 642, 153, 39);
+		botaoExplorar.addActionListener(this);
 
 		// Adiciona o painel da imagem e o botão ao JLayeredPane em diferentes camadas
 		layeredPane.add(painelImagem, Integer.valueOf(0)); // Camada mais baixa
 		layeredPane.add(botaoExplorar, Integer.valueOf(1)); // Camada mais alta
-    if (mostrarBarraNavegacao) {
-      layeredPane.add(barraNavegacao.getBarraNavPanel(), Integer.valueOf(1));
-    }
 	}
 
 	public JLayeredPane getLayeredPane() {
@@ -63,4 +61,18 @@ public class TelaHome extends Tela {
 		this.botaoExplorar = botaoExplorar;
 	}
 
+	public void alteraVisibilidade(boolean bool) {
+		if (bool == true) {
+			layeredPane.setVisible(true);
+		} else {
+			layeredPane.setVisible(false);
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == botaoExplorar) {
+			app.mostrarTela("Login");
+		}
+	}
 }
