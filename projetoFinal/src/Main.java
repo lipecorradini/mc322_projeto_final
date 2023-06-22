@@ -21,7 +21,7 @@ public class Main extends JFrame {
 
         //Adicionando telas ao painel 
         painelPrincipal.add(telaHome.getLayeredPane(), "Home");
-        painelPrincipal.add(telaLoginCadastro.getPainelLoginCadastro(), "Login / Cadastro");
+        painelPrincipal.add(telaLoginCadastro.getPainelLoginCadastro(), "Login");
 
         //Settando frame do aplicativo
         framePrincipal.getContentPane().add(painelPrincipal);
