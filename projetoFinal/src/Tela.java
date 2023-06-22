@@ -4,10 +4,8 @@ public abstract class Tela{
     public BarraNavegacao barraNavegacao;
     public String titulo;
 
-    public Tela(boolean mostrarBarraNavegacao, 
-                BarraNavegacao barraNavegacao) {
+    public Tela(boolean mostrarBarraNavegacao) {
         this.mostrarBarraNavegacao = true;
-        this.barraNavegacao = new BarraNavegacao();
     }
 
     public boolean getMostrarBarraNavegacao() {
