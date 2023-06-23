@@ -2,36 +2,36 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.Math;
 
 public class TelaProduto extends Tela implements ActionListener {
-    private ImageIcon blusaProduto;
+    private ImageIcon imagensCamiseta[];
     private ImageIcon tituloProduto;
     private ImageIcon descricaoProduto;
     private int precoBlusa;
+    public int indiceFoto;
     private char tamanhoBlusa;
     public Main app;
-    //private BarraTamanho barraTamanho
-    // barra com 3 botoes de p, m, g
-
     public JLayeredPane paneTelaProduto;
+    public JLabel labelBlusaProduto;
     public JButton botaoTamanhoP;
     public JButton botaoTamanhoM;
     public JButton botaoTamanhoG;
     public JButton botaoVoltar;
+    public JButton botaoAvancaFoto;
+    public JButton botaoVoltaFoto;
+    //private BarraTamanho barraTamanho
+    // barra com 3 botoes de p, m, g
 
     public TelaProduto(boolean mostrarBarraNavegacao, 
-                        ImageIcon blusaProduto, 
-                        ImageIcon tituloProduto, 
-                        ImageIcon descricaoProduto,
+                        String corCamiseta,
                         Main app){
-        
         super(mostrarBarraNavegacao);
-        this.blusaProduto = blusaProduto;
-        this.tituloProduto = tituloProduto;
-        this.descricaoProduto = descricaoProduto;
+        organizaImagensTela(corCamiseta);
         this.precoBlusa = 100;
         this.tamanhoBlusa = 'd'; // comeca como default
         this.app = app;
+        this.indiceFoto = 0;
 
         // Definicao do layout do layeredPane
         paneTelaProduto = new JLayeredPane();
@@ -43,13 +43,15 @@ public class TelaProduto extends Tela implements ActionListener {
         painelImagemFundo.setBounds(0, 0, 390, 844);
 
         // Criando um Label para as imagens da blusa, do titulo e da descrição
-        JLabel labelBlusaProduto = new JLabel(blusaProduto);
+        this.labelBlusaProduto = new JLabel();
+        this.labelBlusaProduto.setIcon(imagensCamiseta[0]);
         JLabel labelTituloProdutoAbaixo = new JLabel(tituloProduto); // título de baixo
         JLabel labelTituloProdutoAcima = new JLabel(tituloProduto); // titulo de cima
         JLabel labelDescricaoProduto = new JLabel(descricaoProduto);
 
         // Ajustando o tamanho das imagens da blusa, do título e da descrição
-        labelBlusaProduto.setBounds(63, 230, 283, 219);
+        // labelBlusaProduto.setBounds(63, 230, 283, 219);
+        labelBlusaProduto.setBounds(52, 241, 286, 217);
         labelTituloProdutoAbaixo.setBounds(40, 571, 274, 71);
         labelTituloProdutoAcima.setBounds(29, 113, 274, 71);
         labelDescricaoProduto.setBounds(40, 633, 350, 120);
@@ -59,18 +61,24 @@ public class TelaProduto extends Tela implements ActionListener {
         ImageIcon imagemBotaoM = new ImageIcon("lib/tamanhoM.jpg");
         ImageIcon imagemBotaoG = new ImageIcon("lib/tamanhoG.jpg");
         ImageIcon imagemBotaoVoltar = new ImageIcon("lib/icon _arrow left_.png");
+        ImageIcon imagemBotaoAvancaFoto = new ImageIcon("lib/botaoAvancaFoto.jpg");
+        ImageIcon imagemBotaoVoltaFoto = new ImageIcon("lib/botaoVoltaFoto.jpg");
 
         // Adicionando Imagens aos botões dos tamanhos
         botaoTamanhoP = new JButton(imagemBotaoP);
         botaoTamanhoM = new JButton(imagemBotaoM);
         botaoTamanhoG = new JButton(imagemBotaoG);
         botaoVoltar = new JButton(imagemBotaoVoltar);
+        botaoAvancaFoto = new JButton(imagemBotaoAvancaFoto);
+        botaoVoltaFoto = new JButton(imagemBotaoVoltaFoto);
 
         // Ajustando o tamanho e posicionamento dos botões dos tamanhos
         botaoTamanhoP.setBounds(55, 505, 37, 45);
         botaoTamanhoM.setBounds(176, 505, 37, 45);
         botaoTamanhoG.setBounds(295, 505, 37, 45);
         botaoVoltar.setBounds(40, 44, 25, 18);
+        botaoAvancaFoto.setBounds(350, 365, 14, 22);
+        botaoVoltaFoto.setBounds(25, 368, 11, 19);
 
         // Ajustando a borda dos botões
         botaoTamanhoP.setBorderPainted(false);
@@ -78,7 +86,9 @@ public class TelaProduto extends Tela implements ActionListener {
         botaoTamanhoG.setBorderPainted(false);
         botaoVoltar.setBorderPainted(false);
         botaoVoltar.setBackground(new Color(0,0,0,0));
-        
+        botaoAvancaFoto.setBorderPainted(false);
+        botaoVoltaFoto.setBorderPainted(false);
+
         // Ajustando as camadas do panel que serão colocadas as imagens
         paneTelaProduto.add(painelImagemFundo, Integer.valueOf(0));
         paneTelaProduto.add(labelBlusaProduto, Integer.valueOf(2));
@@ -91,17 +101,17 @@ public class TelaProduto extends Tela implements ActionListener {
         paneTelaProduto.add(botaoTamanhoM, Integer.valueOf(2));
         paneTelaProduto.add(botaoTamanhoG, Integer.valueOf(2));
         paneTelaProduto.add(botaoVoltar, Integer.valueOf(2));
+        paneTelaProduto.add(botaoAvancaFoto, Integer.valueOf(2));
+        paneTelaProduto.add(botaoVoltaFoto, Integer.valueOf(2));
         
         // Action listener botao voltar
         botaoVoltar.addActionListener(this);
+        botaoAvancaFoto.addActionListener(this);
+        botaoVoltaFoto.addActionListener(this);
     }
 
     public JLayeredPane getLayeredPane(){
         return this.paneTelaProduto;
-    }
-
-    public ImageIcon getImageBlusaProduto(){
-        return this.blusaProduto;
     }
 
     public ImageIcon getImageTituloProduto(){
@@ -118,14 +128,6 @@ public class TelaProduto extends Tela implements ActionListener {
 
     public void setTamanhoBlusa(char tamanhoBlusa){ // somente P, M ou G
         this.tamanhoBlusa = tamanhoBlusa;
-    }
-
-    public ImageIcon getBlusaProduto() {
-        return this.blusaProduto;
-    }
-
-    public void setBlusaProduto(ImageIcon blusaProduto) {
-        this.blusaProduto = blusaProduto;
     }
 
     public ImageIcon getTituloProduto() {
@@ -192,6 +194,22 @@ public class TelaProduto extends Tela implements ActionListener {
         this.botaoTamanhoG = botaoTamanhoG;
     }
 
+    public JButton getBotaoAvancaFoto() {
+        return this.botaoAvancaFoto;
+    }
+
+    public void setBotaoAvancaFoto(JButton botaoAvancaFoto) {
+        this.botaoAvancaFoto = botaoAvancaFoto;
+    }
+
+    public JButton getBotaoVoltaFoto() {
+        return this.botaoVoltaFoto;
+    }
+
+    public void setbotaoVoltaFoto(JButton botaoVoltaFoto) {
+        this.botaoVoltaFoto = botaoVoltaFoto;
+    }
+
     public JButton getBotaoVoltar() {
         return this.botaoVoltar;
     }
@@ -199,13 +217,48 @@ public class TelaProduto extends Tela implements ActionListener {
     public void setBotaoVoltar(JButton botaoVoltar) {
         this.botaoVoltar = botaoVoltar;
     }
-
     
+    public void organizaImagensTela(String corCamiseta) {
+        this.imagensCamiseta = new ImageIcon[2];
+        if (corCamiseta.equals("preta")) {
+            this.imagensCamiseta[0] = new ImageIcon("lib/camisetaPretaFrente.jpg");
+            this.imagensCamiseta[1] = new ImageIcon("lib/camisetaPretaTras.jpg");
+            this.tituloProduto = new ImageIcon("lib/tituloCamisetaPreta.jpg");
+        } else if (corCamiseta.equals("marrom")) {
+            this.imagensCamiseta[0] = new ImageIcon("lib/camisetaMarromFrente.jpg");
+            this.imagensCamiseta[1] = new ImageIcon("lib/camisetaMarromTras.jpg");
+            this.tituloProduto = new ImageIcon("lib/tituloCamisetaMarrom.jpg");
+        } else if (corCamiseta.equals("offwhite")) {
+            this.imagensCamiseta[0] = new ImageIcon("lib/camisetaOffWhiteFrente.jpg");
+            this.imagensCamiseta[1] = new ImageIcon("lib/camisetaOffWhiteTras.jpg");
+            this.tituloProduto = new ImageIcon("lib/tituloCamisetaOffWhite.jpg");
+        } else if (corCamiseta.equals("branca")) {
+            this.imagensCamiseta[0] = new ImageIcon("lib/camisetaBrancaFrente.jpg");
+            this.imagensCamiseta[1] = new ImageIcon("lib/camisetaBrancaTras.jpg");
+            this.tituloProduto = new ImageIcon("lib/tituloCamisetaBranca.jpg");
+        }
+        this.descricaoProduto = new ImageIcon("lib/TESTEdescricao.jpg");
+    }
+
+    public int decideIndiceImagem(int indice) {
+        if (Math.abs(indice) % 2 == 0) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == getBotaoVoltar()) {
             app.mostrarTela("Essentials");
-        } 
+        } else if (e.getSource() == getBotaoAvancaFoto()) {
+            this.indiceFoto++;
+            this.labelBlusaProduto.setIcon(imagensCamiseta[decideIndiceImagem(indiceFoto)]);
+        } else if (e.getSource() == getBotaoVoltaFoto()) {
+            this.indiceFoto--;
+            this.labelBlusaProduto.setIcon(imagensCamiseta[decideIndiceImagem(indiceFoto)]);
+        }
         
     }
 
