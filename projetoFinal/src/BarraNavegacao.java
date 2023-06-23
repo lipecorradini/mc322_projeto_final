@@ -11,16 +11,24 @@ public class BarraNavegacao {
     public BarraNavegacao(){
         // Definição da dimensão da Layared Pane
         barraNavPanel = new JPanel();
-        barraNavPanel.setPreferredSize(new Dimension(300, 29));
+        barraNavPanel.setBounds(44, 778, 300, 45);
         barraNavPanel.setBackground(new Color(0, 0, 0, 0));
 
         // Definição dos botões
         ImageIcon homeIcon = new ImageIcon("lib/iconeHome.jpg");
         botaoHome = new JButton(homeIcon);
+        botaoHome.setBackground(new Color(0, 0, 0, 0));
+        botaoHome.setBorderPainted(false);
+
         ImageIcon perfilIcon = new ImageIcon("lib/iconePerfil.jpg");
         botaoPerfil = new JButton(perfilIcon);
+        botaoPerfil.setBackground(new Color(0, 0, 0, 0));
+        botaoPerfil.setBorderPainted(false);
+
         ImageIcon carrinhoIcon = new ImageIcon("lib/iconeCarrinho.jpg");
         botaoCarrinho = new JButton(carrinhoIcon);
+        botaoCarrinho.setBackground(new Color(0, 0, 0, 0));
+        botaoCarrinho.setBorderPainted(false);
 
         //Definição das posições dos botões
         botaoHome.setBounds(44, 778, 29, 29);
@@ -32,6 +40,7 @@ public class BarraNavegacao {
         barraNavPanel.add(botaoPerfil);
         barraNavPanel.add(botaoCarrinho);
     }
+    
 
     public JPanel getBarraNavPanel() {
         return this.barraNavPanel;
@@ -64,5 +73,6 @@ public class BarraNavegacao {
     public void setBotaoCarrinho(JButton botaoCarrinho) {
         this.botaoCarrinho = botaoCarrinho;
     }
+
 }
 

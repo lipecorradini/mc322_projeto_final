@@ -9,8 +9,7 @@ public class TelaCarrinho extends Tela {
     // Construtor
     public TelaCarrinho(boolean mostrarBarraNavegacao,
             BarraNavegacao barraNavegacao) {
-        super(mostrarBarraNavegacao,
-                barraNavegacao);
+        super(mostrarBarraNavegacao);
 
         // Definção de Layout
         barraNavegacao = new BarraNavegacao();
