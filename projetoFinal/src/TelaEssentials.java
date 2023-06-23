@@ -62,6 +62,16 @@ public class TelaEssentials extends Tela implements ActionListener{
         ButtonOffWhiteTee.setBounds(65, 565, 75, 20);
         buttonWhiteTee.setBounds(251, 565, 75, 20);
 
+        buttonBlackTee.setBorderPainted(false);
+        buttonBrownTee.setBorderPainted(false);
+        ButtonOffWhiteTee.setBorderPainted(false);
+        buttonWhiteTee.setBorderPainted(false);
+
+        buttonBlackTee.setBackground(new Color(0, 0, 0, 0));
+        buttonBrownTee.setBackground(new Color(0, 0, 0, 0));
+        ButtonOffWhiteTee.setBackground(new Color(0, 0, 0, 0));
+        buttonWhiteTee.setBackground(new Color(0, 0, 0, 0));
+
         buttonBlackTee.addActionListener(this);
         buttonBrownTee.addActionListener(this);
         ButtonOffWhiteTee.addActionListener(this);

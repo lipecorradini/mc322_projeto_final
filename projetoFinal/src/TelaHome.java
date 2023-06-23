@@ -33,11 +33,14 @@ public class TelaHome extends Tela implements ActionListener{
 		painelImagem.setBounds(0, 0, 390, 844);
 
 		// Cria o botão
-		ImageIcon imageIcon = new ImageIcon("lib/Botao_explore.jpg");
+		ImageIcon imageIcon = new ImageIcon("lib/botao_explore.png");
 		botaoExplorar = new JButton(imageIcon);
 
 		// Posiciona o botao
-		botaoExplorar.setBounds(118, 642, 153, 39);
+		botaoExplorar.setBounds(118, 642, 160, 45);
+		botaoExplorar.setBorderPainted(false);
+		botaoExplorar.setBackground(new Color(0, 0, 0, 0));
+
 		botaoExplorar.addActionListener(this);
 
 		// Adiciona o painel da imagem e o botão ao JLayeredPane em diferentes camadas
