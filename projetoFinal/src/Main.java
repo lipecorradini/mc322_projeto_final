@@ -26,10 +26,10 @@ public class Main extends JFrame {
         telaHome = new TelaHome(false, this);
         telaLoginCadastro = new TelaLoginCadastro(false, this);
         telaEssentials = new TelaEssentials(true, this);
-        telaCamisetaPreta = new TelaProduto(false, new ImageIcon("lib/camisetaPretaTras.jpg"), new ImageIcon("lib/tituloCamisetaPreta.jpg"), new ImageIcon("lib/TESTEdescricao.jpg"), this);
-        telaCamisetaMarrom = new TelaProduto(false, new ImageIcon("lib/camisetaMarromTras.jpg"), new ImageIcon("lib/tituloCamisetaMarrom.jpg"), new ImageIcon("lib/TESTEdescricao.jpg"), this);
-        telaCamisetaOffWhite = new TelaProduto(false, new ImageIcon("lib/camisetaOffWhiteTras.jpg"), new ImageIcon("lib/tituloCamisetaOffWhite.jpg"), new ImageIcon("lib/TESTEdescricao.jpg"), this);
-        telaCamisetaBranca = new TelaProduto(false, new ImageIcon("lib/camisetaBrancaTras.jpg"), new ImageIcon("lib/tituloCamisetaBranca.jpg"), new ImageIcon("lib/TESTEdescricao.jpg"), this);
+        telaCamisetaPreta = new TelaProduto(false, "preta", this);
+        telaCamisetaMarrom = new TelaProduto(false, "marrom", this);
+        telaCamisetaOffWhite = new TelaProduto(false, "offwhite", this);
+        telaCamisetaBranca = new TelaProduto(false, "branca", this);
 
         //Adicionando telas ao painel 
         painelPrincipal.add(telaHome.getLayeredPane(), "Home");
