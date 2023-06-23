@@ -5,14 +5,15 @@ public class TelaCarrinho extends Tela {
 
     public JLayeredPane layeredPane;
     public JButton botaoAdicionarCompra;
+    public Main app;
 
     // Construtor
     public TelaCarrinho(boolean mostrarBarraNavegacao,
-            BarraNavegacao barraNavegacao) {
+            BarraNavegacao barraNavegacao, Main app) {
         super(mostrarBarraNavegacao);
-
+        this.app = app;
         // Definção de Layout
-        barraNavegacao = new BarraNavegacao();
+        barraNavegacao = new BarraNavegacao(app);
         layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(390, 844));
 

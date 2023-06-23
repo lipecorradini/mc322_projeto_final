@@ -15,6 +15,7 @@ public class TelaLoginCadastro extends Tela implements ActionListener{
     public JPasswordField passwordFieldSenha;
     public JButton botaoLogin;
     public JButton botaoCadastro;
+    public JButton botaoVoltar;
     public JLabel labelUsuario;
     public JLabel labelSenha;
     public Main app;
@@ -77,12 +78,22 @@ public class TelaLoginCadastro extends Tela implements ActionListener{
         //Criando botões de login e cadastro e setando suas posições
         ImageIcon iconImagemBotaoCadastro = new ImageIcon("lib/botaoCadastrar.jpg");
         ImageIcon iconImagemBotaoLogin = new ImageIcon("lib/botaoLogin.jpg");
+        ImageIcon iconVoltar = new ImageIcon("lib/icon _arrow left_.png");
         botaoCadastro = new JButton(iconImagemBotaoCadastro);
         botaoLogin = new JButton(iconImagemBotaoLogin);
+        botaoVoltar = new JButton(iconVoltar);
+
         botaoCadastro.setBorderPainted(false);
         botaoCadastro.addActionListener(this);
+
         botaoLogin.addActionListener(this);
         botaoLogin.setBorderPainted(false);
+
+        botaoVoltar.addActionListener(this);
+        botaoVoltar.setBorderPainted(false);
+        botaoVoltar.setBackground(new Color(0,0,0,0));
+
+        botaoVoltar.setBounds(45, 50, 25, 18);
         botaoCadastro.setBounds(123, 454, 143, 47);
         botaoLogin.setBounds(123, 520, 143, 47);
 
@@ -91,6 +102,7 @@ public class TelaLoginCadastro extends Tela implements ActionListener{
         paneCamadasLoginCadastro.add(painelLoginCadastro, Integer.valueOf(1));
         paneCamadasLoginCadastro.add(botaoCadastro, Integer.valueOf(2));
         paneCamadasLoginCadastro.add(botaoLogin, Integer.valueOf(3));
+        paneCamadasLoginCadastro.add(botaoVoltar, Integer.valueOf(3));
     }
 
     public JLayeredPane getPainelLoginCadastro() {
@@ -181,6 +193,8 @@ public class TelaLoginCadastro extends Tela implements ActionListener{
             } else {
                 JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o usuário. Por favor tente novamente mais tarde.", "Falha no Cadastro", JOptionPane.INFORMATION_MESSAGE);
             }
+        } else if( e.getSource() == botaoVoltar){
+            app.mostrarTela("Essentials");
         }
     }
 }

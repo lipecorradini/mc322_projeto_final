@@ -1,14 +1,18 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class BarraNavegacao {
+public class BarraNavegacao implements ActionListener {
     public JPanel barraNavPanel;
     public JButton botaoHome;
     public JButton botaoPerfil;
     public JButton botaoCarrinho;
+    public Main app;
     
-    public BarraNavegacao(){
+    public BarraNavegacao(Main app){
+        this.app = app;
         // Definição da dimensão da Layared Pane
         barraNavPanel = new JPanel();
         barraNavPanel.setBounds(44, 778, 300, 45);
@@ -35,10 +39,16 @@ public class BarraNavegacao {
         botaoPerfil.setBounds(181, 778, 29, 29);
         botaoCarrinho.setBounds(317, 778, 29, 29);
 
+        //Seta action listneres
+        botaoHome.addActionListener(this);
+        botaoPerfil.addActionListener(this);
+        botaoCarrinho.addActionListener(this);
+
         //Adicionar aos paineis
         barraNavPanel.add(botaoHome);
         barraNavPanel.add(botaoPerfil);
         barraNavPanel.add(botaoCarrinho);
+
     }
     
 
@@ -72,6 +82,18 @@ public class BarraNavegacao {
 
     public void setBotaoCarrinho(JButton botaoCarrinho) {
         this.botaoCarrinho = botaoCarrinho;
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == botaoHome) {
+            app.mostrarTela("Home");
+        } else if(e.getSource() == botaoPerfil){
+            app.mostrarTela("Login");
+        }else if(e.getSource() == botaoCarrinho){
+            app.mostrarTela("Carrinho");
+        }
+        
     }
 
 }

@@ -22,7 +22,7 @@ public class Main extends JFrame {
         framePrincipal = new JFrame();
 
         //instanciando telas
-        barraNavegacao = new BarraNavegacao(); 
+        barraNavegacao = new BarraNavegacao(this); 
         telaHome = new TelaHome(false, this);
         telaLoginCadastro = new TelaLoginCadastro(false, this);
         telaEssentials = new TelaEssentials(true, this);

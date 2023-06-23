@@ -18,7 +18,7 @@ public class TelaEssentials extends Tela implements ActionListener{
         super(mostrarBarraNavegacao);
         this.app = app;
         // Definção de Layout
-        barraNavegacao = new BarraNavegacao();
+        barraNavegacao = new BarraNavegacao(app);
 		essentialsPane = new JLayeredPane();
 		essentialsPane.setPreferredSize(new Dimension(390, 844));
 
