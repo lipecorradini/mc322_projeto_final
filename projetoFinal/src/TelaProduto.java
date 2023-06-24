@@ -1,5 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.Math;
@@ -8,6 +10,7 @@ public class TelaProduto extends Tela implements ActionListener {
     private ImageIcon imagensCamiseta[];
     private ImageIcon tituloProduto;
     private ImageIcon descricaoProduto;
+    private ImageIcon imagemPrecoProduto;
     private int precoBlusa;
     public int indiceFoto;
     private char tamanhoBlusa;
@@ -20,12 +23,11 @@ public class TelaProduto extends Tela implements ActionListener {
     public JButton botaoVoltar;
     public JButton botaoAvancaFoto;
     public JButton botaoVoltaFoto;
-    //private BarraTamanho barraTamanho
-    // barra com 3 botoes de p, m, g
+    public JButton botaoCarrinho;
 
-    public TelaProduto(boolean mostrarBarraNavegacao, 
-                        String corCamiseta,
-                        Main app){
+    public TelaProduto(boolean mostrarBarraNavegacao,
+            String corCamiseta,
+            Main app) {
         super(mostrarBarraNavegacao);
         organizaImagensTela(corCamiseta);
         this.precoBlusa = 100;
@@ -37,8 +39,8 @@ public class TelaProduto extends Tela implements ActionListener {
         paneTelaProduto = new JLayeredPane();
         paneTelaProduto.setPreferredSize(new Dimension(390, 844));
 
-        // Adicionando a imagem de fundo 
-        ImageIcon imagemFundo = new ImageIcon("lib/TelaFundoProduto.jpg"); // alterar a imagem para a própria da tela produto
+        // Adicionando a imagem de fundo
+        ImageIcon imagemFundo = new ImageIcon("lib/TelaFundoProduto.jpg");
         JLabel painelImagemFundo = new JLabel(imagemFundo);
         painelImagemFundo.setBounds(0, 0, 390, 844);
 
@@ -48,6 +50,7 @@ public class TelaProduto extends Tela implements ActionListener {
         JLabel labelTituloProdutoAbaixo = new JLabel(tituloProduto); // título de baixo
         JLabel labelTituloProdutoAcima = new JLabel(tituloProduto); // titulo de cima
         JLabel labelDescricaoProduto = new JLabel(descricaoProduto);
+        JLabel labelPrecoProduto = new JLabel(imagemPrecoProduto);
 
         // Ajustando o tamanho das imagens da blusa, do título e da descrição
         // labelBlusaProduto.setBounds(63, 230, 283, 219);
@@ -55,6 +58,7 @@ public class TelaProduto extends Tela implements ActionListener {
         labelTituloProdutoAbaixo.setBounds(40, 571, 274, 71);
         labelTituloProdutoAcima.setBounds(29, 113, 274, 71);
         labelDescricaoProduto.setBounds(40, 633, 350, 120);
+        labelPrecoProduto.setBounds(29, 757, 126, 23);
 
         // Carregando as Imagens dos botões
         ImageIcon imagemBotaoP = new ImageIcon("lib/tamanhoP.jpg");
@@ -63,6 +67,7 @@ public class TelaProduto extends Tela implements ActionListener {
         ImageIcon imagemBotaoVoltar = new ImageIcon("lib/icon _arrow left_.png");
         ImageIcon imagemBotaoAvancaFoto = new ImageIcon("lib/botaoAvancaFoto.jpg");
         ImageIcon imagemBotaoVoltaFoto = new ImageIcon("lib/botaoVoltaFoto.jpg");
+        ImageIcon imagemBotaoCarrinho = new ImageIcon("lib/icone_carrinho.jpg");
 
         // Adicionando Imagens aos botões dos tamanhos
         botaoTamanhoP = new JButton(imagemBotaoP);
@@ -71,6 +76,7 @@ public class TelaProduto extends Tela implements ActionListener {
         botaoVoltar = new JButton(imagemBotaoVoltar);
         botaoAvancaFoto = new JButton(imagemBotaoAvancaFoto);
         botaoVoltaFoto = new JButton(imagemBotaoVoltaFoto);
+        botaoCarrinho = new JButton(imagemBotaoCarrinho);
 
         // Ajustando o tamanho e posicionamento dos botões dos tamanhos
         botaoTamanhoP.setBounds(55, 505, 37, 45);
@@ -79,22 +85,25 @@ public class TelaProduto extends Tela implements ActionListener {
         botaoVoltar.setBounds(40, 44, 25, 18);
         botaoAvancaFoto.setBounds(350, 365, 14, 22);
         botaoVoltaFoto.setBounds(25, 368, 11, 19);
+        botaoCarrinho.setBounds(323, 750, imagemBotaoCarrinho.getIconWidth(), imagemBotaoCarrinho.getIconHeight());
 
         // Ajustando a borda dos botões
         botaoTamanhoP.setBorderPainted(false);
         botaoTamanhoM.setBorderPainted(false);
         botaoTamanhoG.setBorderPainted(false);
         botaoVoltar.setBorderPainted(false);
-        botaoVoltar.setBackground(new Color(0,0,0,0));
+        botaoVoltar.setBackground(new Color(0, 0, 0, 0));
         botaoAvancaFoto.setBorderPainted(false);
         botaoVoltaFoto.setBorderPainted(false);
+        botaoCarrinho.setBorderPainted(false);
 
         // Ajustando as camadas do panel que serão colocadas as imagens
         paneTelaProduto.add(painelImagemFundo, Integer.valueOf(0));
         paneTelaProduto.add(labelBlusaProduto, Integer.valueOf(2));
         paneTelaProduto.add(labelTituloProdutoAbaixo, Integer.valueOf(1));
         paneTelaProduto.add(labelTituloProdutoAcima, Integer.valueOf(1));
-        paneTelaProduto.add(labelDescricaoProduto,  Integer.valueOf(1));
+        paneTelaProduto.add(labelDescricaoProduto, Integer.valueOf(1));
+        paneTelaProduto.add(labelPrecoProduto, Integer.valueOf(1));
 
         // Ajustando as camadas do panel que serão colocados os botões
         paneTelaProduto.add(botaoTamanhoP, Integer.valueOf(2));
@@ -103,30 +112,36 @@ public class TelaProduto extends Tela implements ActionListener {
         paneTelaProduto.add(botaoVoltar, Integer.valueOf(2));
         paneTelaProduto.add(botaoAvancaFoto, Integer.valueOf(2));
         paneTelaProduto.add(botaoVoltaFoto, Integer.valueOf(2));
-        
+        paneTelaProduto.add(botaoCarrinho, Integer.valueOf(2));
+
         // Action listener botao voltar
         botaoVoltar.addActionListener(this);
         botaoAvancaFoto.addActionListener(this);
         botaoVoltaFoto.addActionListener(this);
+        botaoCarrinho.addActionListener(this);
+        botaoTamanhoP.addActionListener(this);
+        botaoTamanhoM.addActionListener(this);
+        botaoTamanhoG.addActionListener(this);
+
     }
 
-    public JLayeredPane getLayeredPane(){
+    public JLayeredPane getLayeredPane() {
         return this.paneTelaProduto;
     }
 
-    public ImageIcon getImageTituloProduto(){
+    public ImageIcon getImageTituloProduto() {
         return this.tituloProduto;
     }
 
-    public int getPrecoBlusaProduto(){
+    public int getPrecoBlusaProduto() {
         return this.precoBlusa;
     }
 
-    public char getTamanhoBlusa(){
+    public char getTamanhoBlusa() {
         return this.tamanhoBlusa;
     }
 
-    public void setTamanhoBlusa(char tamanhoBlusa){ // somente P, M ou G
+    public void setTamanhoBlusa(char tamanhoBlusa) { // somente P, M ou G
         this.tamanhoBlusa = tamanhoBlusa;
     }
 
@@ -217,7 +232,15 @@ public class TelaProduto extends Tela implements ActionListener {
     public void setBotaoVoltar(JButton botaoVoltar) {
         this.botaoVoltar = botaoVoltar;
     }
-    
+
+    public JButton getBotaoCarrinho() {
+        return this.botaoCarrinho;
+    }
+
+    public void setBotaoCarrinho(JButton botaoCarrinho) {
+        this.botaoCarrinho = botaoCarrinho;
+    }
+
     public void organizaImagensTela(String corCamiseta) {
         this.imagensCamiseta = new ImageIcon[2];
         if (corCamiseta.equals("preta")) {
@@ -238,6 +261,7 @@ public class TelaProduto extends Tela implements ActionListener {
             this.tituloProduto = new ImageIcon("lib/tituloCamisetaBranca.jpg");
         }
         this.descricaoProduto = new ImageIcon("lib/TESTEdescricao.jpg");
+        this.imagemPrecoProduto = new ImageIcon("lib/preco_camisa.jpg");
     }
 
     public int decideIndiceImagem(int indice) {
@@ -258,8 +282,16 @@ public class TelaProduto extends Tela implements ActionListener {
         } else if (e.getSource() == getBotaoVoltaFoto()) {
             this.indiceFoto--;
             this.labelBlusaProduto.setIcon(imagensCamiseta[decideIndiceImagem(indiceFoto)]);
+        } else if (e.getSource() == getBotaoCarrinho()) {
+            this.botaoCarrinho.setBorder(new LineBorder(Color.BLACK));
+        } else if (e.getSource() == getBotaoTamanhoP()) {
+            this.tamanhoBlusa = 'P';
+        } else if (e.getSource() == getBotaoTamanhoM()) {
+            this.tamanhoBlusa = 'M';
+        } else if (e.getSource() == getBotaoTamanhoG()) {
+            this.tamanhoBlusa = 'G';
         }
-        
+
     }
 
 }

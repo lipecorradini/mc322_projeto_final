@@ -14,6 +14,7 @@ public class Main extends JFrame {
     public TelaProduto telaCamisetaOffWhite;
     public TelaProduto telaCamisetaBranca;
     public BarraNavegacao barraNavegacao;
+    public TelaCarrinho telaCarrinho;
 
     public Main() {
         //instanciando layout e panel
@@ -30,6 +31,7 @@ public class Main extends JFrame {
         telaCamisetaMarrom = new TelaProduto(false, "marrom", this);
         telaCamisetaOffWhite = new TelaProduto(false, "offwhite", this);
         telaCamisetaBranca = new TelaProduto(false, "branca", this);
+        telaCarrinho = new TelaCarrinho(true, this);
 
         //Adicionando telas ao painel 
         painelPrincipal.add(telaHome.getLayeredPane(), "Home");
@@ -40,6 +42,7 @@ public class Main extends JFrame {
         painelPrincipal.add(telaCamisetaOffWhite.getLayeredPane(), "OffWhite");
         painelPrincipal.add(telaCamisetaBranca.getLayeredPane(), "Branca");
         painelPrincipal.add(barraNavegacao.getBarraNavPanel(), "Barra");
+        painelPrincipal.add(telaCarrinho.getLayeredPane(), "Carrinho");
 
         //Settando frame do aplicativo
         framePrincipal.getContentPane().add(painelPrincipal);
@@ -49,11 +52,8 @@ public class Main extends JFrame {
         framePrincipal.setVisible(true);
     }
 
-    public void mostrarTela(String nomeTela ) { // boolean mostrarBarraNavegacao
+    public void mostrarTela(String nomeTela) { 
         layoutTelas.show(painelPrincipal, nomeTela);
-        // if (mostrarBarraNavegacao) {
-        //     layoutTelas.show(painelPrincipal, "Barra");
-        // }
     }
 
     public static void main(String[] args) {

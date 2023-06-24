@@ -8,8 +8,7 @@ public class TelaCarrinho extends Tela {
     public Main app;
 
     // Construtor
-    public TelaCarrinho(boolean mostrarBarraNavegacao,
-            BarraNavegacao barraNavegacao, Main app) {
+    public TelaCarrinho(boolean mostrarBarraNavegacao, Main app) {
         super(mostrarBarraNavegacao);
         this.app = app;
         // Definção de Layout
@@ -36,7 +35,8 @@ public class TelaCarrinho extends Tela {
         JButton botaoFinalizarCompra = new JButton(imagemFinalizarCompra);
 
         // Ajustando o tamanho e características do botão
-        botaoFinalizarCompra.setBounds(91, 667, 208, 39);
+        botaoFinalizarCompra.setBounds(91, 667, imagemFinalizarCompra.getIconWidth(),
+                imagemFinalizarCompra.getIconHeight());
         botaoFinalizarCompra.setBorderPainted(false);
 
         // Criando a imagem da palavra total
