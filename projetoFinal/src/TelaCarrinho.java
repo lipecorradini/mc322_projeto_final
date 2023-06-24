@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 public class TelaCarrinho extends Tela implements ActionListener {
 
     public JLayeredPane layeredPane;
-    public JButton botaoAdicionarCompra;
+    public JButton botaoFinalizarCompra;
     public Main app;
     public BarraNavegacao barraNavegacao;
     public JButton botaoVoltar;
@@ -37,7 +37,7 @@ public class TelaCarrinho extends Tela implements ActionListener {
         ImageIcon imagemFinalizarCompra = new ImageIcon("lib/botao_finalizar_compra.jpg");
 
         // Criando o botão
-        JButton botaoFinalizarCompra = new JButton(imagemFinalizarCompra);
+        botaoFinalizarCompra = new JButton(imagemFinalizarCompra);
 
         // Criando o botão de voltar
         ImageIcon iconVoltar = new ImageIcon("lib/icon _arrow left_.png");
@@ -51,6 +51,7 @@ public class TelaCarrinho extends Tela implements ActionListener {
         botaoFinalizarCompra.setBounds(91, 667, imagemFinalizarCompra.getIconWidth(),
                 imagemFinalizarCompra.getIconHeight());
         botaoFinalizarCompra.setBorderPainted(false);
+        botaoFinalizarCompra.addActionListener(this);
 
         // Criando a imagem da palavra total
         ImageIcon imagemPalavraTotal = new ImageIcon("lib/Total.jpg");
@@ -83,6 +84,9 @@ public class TelaCarrinho extends Tela implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == botaoVoltar) {
             app.mostrarTela("Essentials");
+        } else if(e.getSource() == botaoFinalizarCompra){
+             JOptionPane.showMessageDialog(null, "Pedido realizado com Sucesso! Informações de pagamento no email.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                app.mostrarTela("Home");
         }
     }
 
