@@ -291,10 +291,22 @@ public class TelaProduto extends Tela implements ActionListener {
             app.mostrarTela("Carrinho");
         } else if (e.getSource() == getBotaoTamanhoP()) {
             this.tamanhoBlusa = 'P';
+            getBotaoTamanhoP().setIcon(new ImageIcon("lib/P selecionado.png"));
+            getBotaoTamanhoP().setBackground(new Color(0, 0, 0, 0));
+            getBotaoTamanhoM().setIcon(new ImageIcon("lib/tamanhoM.jpg"));
+            getBotaoTamanhoG().setIcon(new ImageIcon("lib/tamanhoG.jpg"));
         } else if (e.getSource() == getBotaoTamanhoM()) {
             this.tamanhoBlusa = 'M';
+            getBotaoTamanhoP().setIcon(new ImageIcon("lib/tamanhoP.jpg"));
+            getBotaoTamanhoM().setIcon(new ImageIcon("lib/M selecionado.png"));
+            getBotaoTamanhoM().setBackground(new Color(0, 0, 0, 0));
+            getBotaoTamanhoG().setIcon(new ImageIcon("lib/tamanhoG.jpg"));
         } else if (e.getSource() == getBotaoTamanhoG()) {
             this.tamanhoBlusa = 'G';
+            getBotaoTamanhoP().setIcon(new ImageIcon("lib/tamanhoP.jpg"));
+            getBotaoTamanhoM().setIcon(new ImageIcon("lib/tamanhoM.jpg"));
+            getBotaoTamanhoG().setIcon(new ImageIcon("lib/G selecionado.png"));
+            getBotaoTamanhoG().setBackground(new Color(0, 0, 0, 0));
         }
 
     }
