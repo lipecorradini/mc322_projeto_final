@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Main extends JFrame {
     public CardLayout layoutTelas;
@@ -16,6 +17,8 @@ public class Main extends JFrame {
     public BarraNavegacao barraNavegacao;
     public TelaCarrinho telaCarrinho;
 
+    public ArrayList<Pedido> listaPedidos;
+
     public Main() {
         //instanciando layout e panel
         layoutTelas = new CardLayout();
@@ -31,7 +34,7 @@ public class Main extends JFrame {
         telaCamisetaMarrom = new TelaProduto(false, "marrom", this);
         telaCamisetaOffWhite = new TelaProduto(false, "offwhite", this);
         telaCamisetaBranca = new TelaProduto(false, "branca", this);
-        telaCarrinho = new TelaCarrinho(true, this);
+        telaCarrinho = new TelaCarrinho(false, this);
 
         //Adicionando telas ao painel 
         painelPrincipal.add(telaHome.getLayeredPane(), "Home");
@@ -50,10 +53,18 @@ public class Main extends JFrame {
         framePrincipal.setSize(390, 844);
         framePrincipal.setLocationRelativeTo(null);
         framePrincipal.setVisible(true);
+
+        //Criando a lista dos pedidos
+        listaPedidos = new ArrayList<Pedido>();
+
     }
 
     public void mostrarTela(String nomeTela) { 
         layoutTelas.show(painelPrincipal, nomeTela);
+    }
+
+    public ArrayList<Pedido> getListaPedidos(){
+        return this.listaPedidos;
     }
 
     public static void main(String[] args) {

@@ -14,6 +14,7 @@ public class TelaProduto extends Tela implements ActionListener {
     private int precoBlusa;
     public int indiceFoto;
     private char tamanhoBlusa;
+    private String corCamiseta;
     public Main app;
     public JLayeredPane paneTelaProduto;
     public JLabel labelBlusaProduto;
@@ -30,6 +31,7 @@ public class TelaProduto extends Tela implements ActionListener {
             Main app) {
         super(mostrarBarraNavegacao);
         organizaImagensTela(corCamiseta);
+        this.corCamiseta = corCamiseta;
         this.precoBlusa = 100;
         this.tamanhoBlusa = 'd'; // comeca como default
         this.app = app;
@@ -283,7 +285,10 @@ public class TelaProduto extends Tela implements ActionListener {
             this.indiceFoto--;
             this.labelBlusaProduto.setIcon(imagensCamiseta[decideIndiceImagem(indiceFoto)]);
         } else if (e.getSource() == getBotaoCarrinho()) {
-            this.botaoCarrinho.setBorder(new LineBorder(Color.BLACK));
+            Pedido produto = new Pedido(corCamiseta, tamanhoBlusa);
+            app.getListaPedidos().add(produto);
+            System.out.println(app.getListaPedidos().size());
+            app.mostrarTela("Carrinho");
         } else if (e.getSource() == getBotaoTamanhoP()) {
             this.tamanhoBlusa = 'P';
         } else if (e.getSource() == getBotaoTamanhoM()) {

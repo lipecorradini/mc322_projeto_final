@@ -3,7 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class TelaEssentials extends Tela implements ActionListener{
+public class TelaEssentials extends Tela implements ActionListener {
     public JLayeredPane essentialsPane;
     public JButton buttonBlackTee;
     public JButton ButtonOffWhiteTee;
@@ -12,49 +12,47 @@ public class TelaEssentials extends Tela implements ActionListener{
     public Main app;
     public BarraNavegacao barraNavegacao;
 
-    //Construtor
-    public TelaEssentials(boolean mostrarBarraNavegacao, 
-                            Main app) {
+    // Construtor
+    public TelaEssentials(boolean mostrarBarraNavegacao,
+            Main app) {
         super(mostrarBarraNavegacao);
         this.app = app;
         // Definção de Layout
         barraNavegacao = new BarraNavegacao(app);
-		essentialsPane = new JLayeredPane();
-		essentialsPane.setPreferredSize(new Dimension(390, 844));
+        essentialsPane = new JLayeredPane();
+        essentialsPane.setPreferredSize(new Dimension(390, 844));
 
-		// Painel da imagem de fundo
-		JPanel painelImagemFundo = new JPanel() {
-			@Override
-			public void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				Image imagem = new ImageIcon("lib/Essentials.jpg").getImage();
-				g.drawImage(imagem, 0, 0, getWidth(), getHeight(), this);
-			}
-		};
+        // Painel da imagem de fundo
+        JPanel painelImagemFundo = new JPanel() {
+            @Override
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Image imagem = new ImageIcon("lib/Essentials.jpg").getImage();
+                g.drawImage(imagem, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
 
-        //Painel para elementos de preview
+        // Painel para elementos de preview
         JPanel painelImagemPreview = new JPanel() {
-			@Override
-			public void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				Image imagem = new ImageIcon("lib/tees preview.png").getImage();
-				g.drawImage(imagem, 0, 0, getWidth(), getHeight(), this);
-			}
-		};
-        painelImagemPreview.setBackground(new Color(0,0,0,0));
+            @Override
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Image imagem = new ImageIcon("lib/tees preview.png").getImage();
+                g.drawImage(imagem, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        painelImagemPreview.setBackground(new Color(0, 0, 0, 0));
 
-		// Config para o tamanho da imagem
-		painelImagemFundo.setBounds(0, 0, 390, 844);
+        // Config para o tamanho da imagem
+        painelImagemFundo.setBounds(0, 0, 390, 844);
         painelImagemPreview.setBounds(28, 245, 334, 354);
 
-
         // Cria o botão
-		ImageIcon imageIcon = new ImageIcon("lib/botao essential.png");
+        ImageIcon imageIcon = new ImageIcon("lib/botao essential.png");
         buttonBlackTee = new JButton(imageIcon);
         buttonBrownTee = new JButton(imageIcon);
         ButtonOffWhiteTee = new JButton(imageIcon);
         buttonWhiteTee = new JButton(imageIcon);
-        
 
         // Posiciona o botao
         buttonBlackTee.setBounds(65, 358, 75, 20);
@@ -80,12 +78,12 @@ public class TelaEssentials extends Tela implements ActionListener{
         // barraNavegacao.getBarraNavPanel().setBounds(0, 815, 300, 29);
 
         // Adiciona o painel da imagem e o botão ao JLayeredPane em diferentes camadas
-		essentialsPane.add(painelImagemFundo, Integer.valueOf(0)); // Camada mais baixa
+        essentialsPane.add(painelImagemFundo, Integer.valueOf(0)); // Camada mais baixa
         essentialsPane.add(painelImagemPreview, Integer.valueOf(1));
-		essentialsPane.add(buttonBlackTee, Integer.valueOf(2));
+        essentialsPane.add(buttonBlackTee, Integer.valueOf(2));
         essentialsPane.add(buttonBrownTee, Integer.valueOf(2));
         essentialsPane.add(ButtonOffWhiteTee, Integer.valueOf(2));
-        essentialsPane.add(buttonWhiteTee, Integer.valueOf(2)); 
+        essentialsPane.add(buttonWhiteTee, Integer.valueOf(2));
         if (mostrarBarraNavegacao) {
             essentialsPane.add(barraNavegacao.getBarraNavPanel(), Integer.valueOf(3));
         }
