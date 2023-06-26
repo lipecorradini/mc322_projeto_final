@@ -75,8 +75,6 @@ public class TelaEssentials extends Tela implements ActionListener {
         ButtonOffWhiteTee.addActionListener(this);
         buttonWhiteTee.addActionListener(this);
 
-        // barraNavegacao.getBarraNavPanel().setBounds(0, 815, 300, 29);
-
         // Adiciona o painel da imagem e o botão ao JLayeredPane em diferentes camadas
         essentialsPane.add(painelImagemFundo, Integer.valueOf(0)); // Camada mais baixa
         essentialsPane.add(painelImagemPreview, Integer.valueOf(1));

@@ -286,11 +286,11 @@ public class TelaProduto extends Tela implements ActionListener {
             this.labelBlusaProduto.setIcon(imagensCamiseta[decideIndiceImagem(indiceFoto)]);
         } else if (e.getSource() == getBotaoCarrinho()) {
             if (tamanhoBlusa == 'd') {
-                JOptionPane.showMessageDialog(null, "Por favor selecione um tamanho para o produto.", "Selecione Tamanho", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Por favor selecione um tamanho para o produto.",
+                        "Selecione Tamanho", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 Pedido produto = new Pedido(corCamiseta, tamanhoBlusa);
                 app.getListaPedidos().add(produto);
-                System.out.println(app.getListaPedidos().size());
                 app.getTelaCarrinho().atualizarPedido();
                 app.mostrarTela("Carrinho");
             }
