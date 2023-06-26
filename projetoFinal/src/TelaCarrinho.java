@@ -3,6 +3,7 @@ import javax.swing.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class TelaCarrinho extends Tela implements ActionListener {
 
@@ -13,6 +14,7 @@ public class TelaCarrinho extends Tela implements ActionListener {
     public JButton botaoVoltar;
     private int heightComponentCarrinho;
     private int numeroPedidos;
+    private ArrayList<ImageIcon> listaComponentesCarrinho;
 
     // Construtor
     public TelaCarrinho(boolean mostrarBarraNavegacao, Main app) {
@@ -39,6 +41,19 @@ public class TelaCarrinho extends Tela implements ActionListener {
 
         // Adicionando o ícone do botão
         ImageIcon imagemFinalizarCompra = new ImageIcon("lib/botao_finalizar_compra.jpg");
+
+        // Definindo as imagens dos componentes do carrinho
+        listaComponentesCarrinho = new ArrayList<ImageIcon>();
+        ImageIcon imagemBlackCarrinho = new ImageIcon("lib/carrinhoBlackTee.jpg");
+        ImageIcon imagemBrownCarrinho = new ImageIcon("lib/carrinhoBrown.jpg");
+        ImageIcon imagemWhiteCarrinho = new ImageIcon("lib/carrinhoWhite.jpg");
+        ImageIcon imagemOffWhiteCarrinho = new ImageIcon("lib/carrinhoOffWhite.jpg");
+
+        // Criando a lista das imagens dos componentes do carrinho;
+        listaComponentesCarrinho.add(imagemBlackCarrinho);
+        listaComponentesCarrinho.add(imagemBrownCarrinho);
+        listaComponentesCarrinho.add(imagemWhiteCarrinho);
+        listaComponentesCarrinho.add(imagemOffWhiteCarrinho);
 
         // Criando o botão
         botaoFinalizarCompra = new JButton(imagemFinalizarCompra);
@@ -88,12 +103,24 @@ public class TelaCarrinho extends Tela implements ActionListener {
         this.heightComponentCarrinho = heightComponentCarrinho;
     }
 
+    public ImageIcon escolherCorItemCarrinho(String corItem) {
+        if (corItem.equals("preta")) {
+            return this.listaComponentesCarrinho.get(0);
+        } else if (corItem.equals("marrom")) {
+            return this.listaComponentesCarrinho.get(1);
+        } else if (corItem.equals("branca")) {
+            return this.listaComponentesCarrinho.get(2);
+        } else { // offwhite
+            return this.listaComponentesCarrinho.get(3);
+        }
+    }
+
     public void atualizarPedido() {
         if (app.getListaPedidos().size() > numeroPedidos && numeroPedidos < 3) {
 
             // Recebendo o pedido e a imagem do item do carrinho
             Pedido pedidoAdicionado = app.getListaPedidos().get(numeroPedidos);
-            ImageIcon imagemPedidoCarrinho = new ImageIcon("lib/carrinhoBlackTee.jpg"); // filtrar para cores diferentes
+            ImageIcon imagemPedidoCarrinho = escolherCorItemCarrinho(pedidoAdicionado.getCorProduto());
             JLabel labelImagemPedidoCarrinho = new JLabel(imagemPedidoCarrinho);
 
             // Definindo tamanho para o item do carrinho
@@ -106,29 +133,31 @@ public class TelaCarrinho extends Tela implements ActionListener {
                     100,
                     80);
 
-            // Mostrando o valor total da compra do cliente
-            JLabel labelPrecoCompra = new JLabel(Integer.toString(app.getListaPedidos().size() * 10) + "0,00 R$");
-            labelPrecoCompra.setBounds(120, 560,
-                    100,
-                    80);
-
-            // Colocando o fundo do total da compra
-            ImageIcon fundoTotalCompra = new ImageIcon("lib/espaco_total_compra.jpg");
-            JLabel labelEspacoTotal = new JLabel(fundoTotalCompra);
-            labelEspacoTotal.setBounds(110, 560, 100, 80);
-
             // Atualizando a altura para o próximo componente
             setHeightComponentCarrinho(heightComponentCarrinho + labelImagemPedidoCarrinho.getHeight() + 2);
 
             // Adicionando todos os itens ao layeredPane
             this.layeredPane.add(labelImagemPedidoCarrinho, Integer.valueOf(3));
             this.layeredPane.add(textoTamanhoSelecionado, Integer.valueOf(4));
-            this.layeredPane.add(labelPrecoCompra, Integer.valueOf(app.getListaPedidos().size() + 3));
-            this.layeredPane.add(labelEspacoTotal, Integer.valueOf(app.getListaPedidos().size() + 3));
 
             numeroPedidos++;
 
         }
+
+        // Mostrando o valor total da compra do cliente
+        JLabel labelPrecoCompra = new JLabel(Integer.toString(app.getListaPedidos().size() * 10) + "0,00 R$");
+        labelPrecoCompra.setBounds(120, 560,
+                100,
+                80);
+
+        // Colocando o fundo do total da compra
+        ImageIcon fundoTotalCompra = new ImageIcon("lib/espaco_total_compra.jpg");
+        JLabel labelEspacoTotal = new JLabel(fundoTotalCompra);
+        labelEspacoTotal.setBounds(110, 560, 100, 80);
+
+        // Adicionando as informaçãoes do total ao layered pane
+        this.layeredPane.add(labelPrecoCompra, Integer.valueOf(app.getListaPedidos().size() + 3));
+        this.layeredPane.add(labelEspacoTotal, Integer.valueOf(app.getListaPedidos().size() + 3));
     }
 
     @Override
