@@ -285,11 +285,15 @@ public class TelaProduto extends Tela implements ActionListener {
             this.indiceFoto--;
             this.labelBlusaProduto.setIcon(imagensCamiseta[decideIndiceImagem(indiceFoto)]);
         } else if (e.getSource() == getBotaoCarrinho()) {
-            Pedido produto = new Pedido(corCamiseta, tamanhoBlusa);
-            app.getListaPedidos().add(produto);
-            System.out.println(app.getListaPedidos().size());
-            app.getTelaCarrinho().atualizarPedido();
-            app.mostrarTela("Carrinho");
+            if (tamanhoBlusa == 'd') {
+                JOptionPane.showMessageDialog(null, "Por favor selecione um tamanho para o produto.", "Selecione Tamanho", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                Pedido produto = new Pedido(corCamiseta, tamanhoBlusa);
+                app.getListaPedidos().add(produto);
+                System.out.println(app.getListaPedidos().size());
+                app.getTelaCarrinho().atualizarPedido();
+                app.mostrarTela("Carrinho");
+            }
         } else if (e.getSource() == getBotaoTamanhoP()) {
             this.tamanhoBlusa = 'P';
             getBotaoTamanhoP().setIcon(new ImageIcon("lib/P selecionado.png"));

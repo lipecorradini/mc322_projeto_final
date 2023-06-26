@@ -140,19 +140,15 @@ public class TelaLoginCadastro extends Tela implements ActionListener{
             while (scanner.hasNextLine()) {
                 if (i == 0) { //looking at first line, t.i., username
                     if (tentativaUsername.equals(scanner.nextLine())) {
-                        System.out.println("IF 1");
                         i++;
                         continue;
                     } else {
-                        System.out.println("IF 2");
                         return false;
                     }
                 } else { //looking at second line, t.i., passowrd
                     if (tentativaPassowrd.equals(scanner.next())) {
-                        System.out.println("IF 3");
                         return true;
                     } else {
-                        System.out.println("IF 4");
                         return false;
                     }
                 }
@@ -180,6 +176,7 @@ public class TelaLoginCadastro extends Tela implements ActionListener{
             String tentativaSenha = String.valueOf(passwordFieldSenha.getPassword());
             if (checksUser(tentativaUser, tentativaSenha)) {
                 JOptionPane.showMessageDialog(null, "Login feito com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                app.setStatusLogin(true);
                 app.mostrarTela("Essentials");
             } else {
                 JOptionPane.showMessageDialog(null, "A combinação de nome de usuário de senha não corresopndem à nenhum usuário cadastrado. Por favor tente novamente mais tarde.", "Falha no Login", JOptionPane.INFORMATION_MESSAGE);
@@ -189,6 +186,7 @@ public class TelaLoginCadastro extends Tela implements ActionListener{
             String novoSenha = String.valueOf(passwordFieldSenha.getPassword());
             if (createUser(novoUser, novoSenha)) {
                 JOptionPane.showMessageDialog(null, "Usuário cadastrado com succeso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                app.setStatusLogin(true);
                 app.mostrarTela("Essentials");
             } else {
                 JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o usuário. Por favor tente novamente mais tarde.", "Falha no Cadastro", JOptionPane.INFORMATION_MESSAGE);

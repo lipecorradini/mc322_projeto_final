@@ -18,6 +18,8 @@ public class Main extends JFrame {
     public TelaCarrinho telaCarrinho;
 
     public ArrayList<Pedido> listaPedidos;
+    public boolean estaLogado;
+
 
     public Main() {
         // instanciando layout e panel
@@ -57,6 +59,7 @@ public class Main extends JFrame {
         framePrincipal.setLocationRelativeTo(null);
         framePrincipal.setVisible(true);
 
+        estaLogado = false;
     }
 
     public void mostrarTela(String nomeTela) {
@@ -71,6 +74,13 @@ public class Main extends JFrame {
         return this.telaCarrinho;
     }
 
+    public boolean getStatusLogin() {
+        return this.estaLogado;
+    }
+
+    public void setStatusLogin(boolean novoStatus) {
+        this.estaLogado = novoStatus;
+    }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             new Main();

@@ -88,7 +88,7 @@ public class BarraNavegacao implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == botaoHome) {
             app.mostrarTela("Home");
-        } else if(e.getSource() == botaoPerfil){
+        } else if(e.getSource() == botaoPerfil) {
             app.mostrarTela("Login");
         }else if(e.getSource() == botaoCarrinho){
             app.mostrarTela("Carrinho");

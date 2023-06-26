@@ -89,7 +89,6 @@ public class TelaCarrinho extends Tela implements ActionListener {
     }
 
     public void atualizarPedido() {
-
         if (app.getListaPedidos().size() > numeroPedidos && numeroPedidos < 3) {
 
             // Recebendo o pedido e a imagem do item do carrinho
@@ -137,9 +136,13 @@ public class TelaCarrinho extends Tela implements ActionListener {
         if (e.getSource() == botaoVoltar) {
             app.mostrarTela("Essentials");
         } else if (e.getSource() == botaoFinalizarCompra) {
-            JOptionPane.showMessageDialog(null, "Pedido realizado com Sucesso! Informações de pagamento no email.",
-                    "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            app.mostrarTela("Home");
+            if (app.getStatusLogin() == false) {
+                JOptionPane.showMessageDialog(null, "Por favor, crie uma conta ou faça login antes de finalizar sua compra.", "Faça Login", JOptionPane.INFORMATION_MESSAGE);
+                app.mostrarTela("Login");
+            } else {
+                JOptionPane.showMessageDialog(null, "Pedido realizado com Sucesso! Informações de pagamento no email.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                app.mostrarTela("Home");
+            }
         }
     }
 
