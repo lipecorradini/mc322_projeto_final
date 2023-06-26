@@ -74,6 +74,10 @@ public class Main extends JFrame {
         return this.telaCarrinho;
     }
 
+    public TelaEssentials getTelaEssentials() {
+        return this.telaEssentials;
+    }
+
     public boolean getStatusLogin() {
         return this.estaLogado;
     }

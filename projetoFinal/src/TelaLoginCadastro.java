@@ -67,7 +67,7 @@ public class TelaLoginCadastro extends Tela implements ActionListener{
 
         layout.putConstraint(oeste, labelSenha, 9, oeste, painelLoginCadastro);
         layout.putConstraint(norte, labelSenha, 33, sul, labelUsuario);
-        layout.putConstraint(oeste, passwordFieldSenha, 12, leste, labelSenha);
+        layout.putConstraint(oeste, passwordFieldSenha, 9, leste, labelSenha);
         layout.putConstraint(norte, passwordFieldSenha, 20, sul, textFieldUsuario);
 
         //Importando e colocando imagem de fundo
@@ -177,6 +177,7 @@ public class TelaLoginCadastro extends Tela implements ActionListener{
             if (checksUser(tentativaUser, tentativaSenha)) {
                 JOptionPane.showMessageDialog(null, "Login feito com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 app.setStatusLogin(true);
+                app.getTelaEssentials().atualizarTelaEssentials();
                 app.mostrarTela("Essentials");
             } else {
                 JOptionPane.showMessageDialog(null, "A combinação de nome de usuário de senha não corresopndem à nenhum usuário cadastrado. Por favor tente novamente mais tarde.", "Falha no Login", JOptionPane.INFORMATION_MESSAGE);
@@ -187,6 +188,7 @@ public class TelaLoginCadastro extends Tela implements ActionListener{
             if (createUser(novoUser, novoSenha)) {
                 JOptionPane.showMessageDialog(null, "Usuário cadastrado com succeso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 app.setStatusLogin(true);
+                app.getTelaEssentials().atualizarTelaEssentials();
                 app.mostrarTela("Essentials");
             } else {
                 JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o usuário. Por favor tente novamente mais tarde.", "Falha no Cadastro", JOptionPane.INFORMATION_MESSAGE);

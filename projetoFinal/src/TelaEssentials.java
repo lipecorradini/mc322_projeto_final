@@ -9,8 +9,9 @@ public class TelaEssentials extends Tela implements ActionListener {
     public JButton ButtonOffWhiteTee;
     public JButton buttonWhiteTee;
     public JButton buttonBrownTee;
-    public Main app;
     public BarraNavegacao barraNavegacao;
+    public BarraNavegacaoLogado barraNavegacaoLogado;
+    public Main app;
 
     // Construtor
     public TelaEssentials(boolean mostrarBarraNavegacao,
@@ -18,6 +19,7 @@ public class TelaEssentials extends Tela implements ActionListener {
         super(mostrarBarraNavegacao);
         this.app = app;
         // Definção de Layout
+        barraNavegacaoLogado = new BarraNavegacaoLogado(app);
         barraNavegacao = new BarraNavegacao(app);
         essentialsPane = new JLayeredPane();
         essentialsPane.setPreferredSize(new Dimension(390, 844));
@@ -82,9 +84,7 @@ public class TelaEssentials extends Tela implements ActionListener {
         essentialsPane.add(buttonBrownTee, Integer.valueOf(2));
         essentialsPane.add(ButtonOffWhiteTee, Integer.valueOf(2));
         essentialsPane.add(buttonWhiteTee, Integer.valueOf(2));
-        if (mostrarBarraNavegacao) {
-            essentialsPane.add(barraNavegacao.getBarraNavPanel(), Integer.valueOf(3));
-        }
+        essentialsPane.add(barraNavegacao.getBarraNavPanel(), Integer.valueOf(3));
     }
 
     public JLayeredPane getEssentialsPane() {
@@ -125,6 +125,10 @@ public class TelaEssentials extends Tela implements ActionListener {
 
     public void setButtonBrownTee(JButton buttonBrownTee) {
         this.buttonBrownTee = buttonBrownTee;
+    }
+
+    public void atualizarTelaEssentials() {
+        essentialsPane.add(barraNavegacaoLogado.getBarraNavPanel(), Integer.valueOf(4));
     }
 
     @Override
