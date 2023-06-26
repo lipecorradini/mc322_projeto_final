@@ -15,7 +15,7 @@ public class BarraNavegacao implements BarraNavegacaoInterface, ActionListener {
         this.app = app;
         // Definição da dimensão da Layared Pane
         barraNavPanel = new JPanel();
-        barraNavPanel.setBounds(44, 778, 300, 45);
+        barraNavPanel.setBounds(44, 738, 300, 45);
         barraNavPanel.setBackground(new Color(0, 0, 0, 0));
 
         // Definição dos botões
@@ -35,9 +35,9 @@ public class BarraNavegacao implements BarraNavegacaoInterface, ActionListener {
         botaoCarrinho.setBorderPainted(false);
 
         // Definição das posições dos botões
-        botaoHome.setBounds(44, 778, 29, 29);
-        botaoPerfil.setBounds(181, 778, 29, 29);
-        botaoCarrinho.setBounds(317, 778, 29, 29);
+        botaoHome.setBounds(4, 760, 29, 29);
+        botaoPerfil.setBounds(181, 760, 29, 29);
+        botaoCarrinho.setBounds(358, 760, 29, 29);
 
         // Seta action listneres
         botaoHome.addActionListener(this);

@@ -97,7 +97,7 @@ public class TelaCarrinho extends Tela implements ActionListener {
             JLabel labelImagemPedidoCarrinho = new JLabel(imagemPedidoCarrinho);
 
             // Definindo tamanho para o item do carrinho
-            labelImagemPedidoCarrinho.setBounds(38, heightComponentCarrinho, imagemPedidoCarrinho.getIconWidth(),
+            labelImagemPedidoCarrinho.setBounds(34, heightComponentCarrinho, imagemPedidoCarrinho.getIconWidth(),
                     imagemPedidoCarrinho.getIconHeight());
 
             // Definindo o texto e a fonte
@@ -137,10 +137,13 @@ public class TelaCarrinho extends Tela implements ActionListener {
             app.mostrarTela("Essentials");
         } else if (e.getSource() == botaoFinalizarCompra) {
             if (app.getStatusLogin() == false) {
-                JOptionPane.showMessageDialog(null, "Por favor, crie uma conta ou faça login antes de finalizar sua compra.", "Faça Login", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,
+                        "Por favor, crie uma conta ou faça login antes de finalizar sua compra.", "Faça Login",
+                        JOptionPane.INFORMATION_MESSAGE);
                 app.mostrarTela("Login");
             } else {
-                JOptionPane.showMessageDialog(null, "Pedido realizado com Sucesso! Informações de pagamento no email.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Pedido realizado com Sucesso! Informações de pagamento no email.",
+                        "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 app.mostrarTela("Home");
             }
         }
