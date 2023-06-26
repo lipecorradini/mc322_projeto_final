@@ -288,6 +288,7 @@ public class TelaProduto extends Tela implements ActionListener {
             Pedido produto = new Pedido(corCamiseta, tamanhoBlusa);
             app.getListaPedidos().add(produto);
             System.out.println(app.getListaPedidos().size());
+            app.getTelaCarrinho().atualizarPedido();
             app.mostrarTela("Carrinho");
         } else if (e.getSource() == getBotaoTamanhoP()) {
             this.tamanhoBlusa = 'P';

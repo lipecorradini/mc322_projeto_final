@@ -11,11 +11,15 @@ public class TelaCarrinho extends Tela implements ActionListener {
     public Main app;
     public BarraNavegacao barraNavegacao;
     public JButton botaoVoltar;
+    private int heightComponentCarrinho;
+    private int numeroPedidos;
 
     // Construtor
     public TelaCarrinho(boolean mostrarBarraNavegacao, Main app) {
         super(mostrarBarraNavegacao);
         this.app = app;
+        this.numeroPedidos = 0;
+        this.heightComponentCarrinho = 289;
         // Definção de Layout
         barraNavegacao = new BarraNavegacao(app);
         layeredPane = new JLayeredPane();
@@ -80,13 +84,62 @@ public class TelaCarrinho extends Tela implements ActionListener {
         this.layeredPane = layeredPane;
     }
 
+    public void setHeightComponentCarrinho(int heightComponentCarrinho) {
+        this.heightComponentCarrinho = heightComponentCarrinho;
+    }
+
+    public void atualizarPedido() {
+
+        if (app.getListaPedidos().size() > numeroPedidos && numeroPedidos < 3) {
+
+            // Recebendo o pedido e a imagem do item do carrinho
+            Pedido pedidoAdicionado = app.getListaPedidos().get(numeroPedidos);
+            ImageIcon imagemPedidoCarrinho = new ImageIcon("lib/carrinhoBlackTee.jpg"); // filtrar para cores diferentes
+            JLabel labelImagemPedidoCarrinho = new JLabel(imagemPedidoCarrinho);
+
+            // Definindo tamanho para o item do carrinho
+            labelImagemPedidoCarrinho.setBounds(38, heightComponentCarrinho, imagemPedidoCarrinho.getIconWidth(),
+                    imagemPedidoCarrinho.getIconHeight());
+
+            // Definindo o texto e a fonte
+            JLabel textoTamanhoSelecionado = new JLabel("Size: " + pedidoAdicionado.getTamanhoProduto());
+            textoTamanhoSelecionado.setBounds(48 + labelImagemPedidoCarrinho.getWidth() / 2, heightComponentCarrinho,
+                    100,
+                    80);
+
+            // Mostrando o valor total da compra do cliente
+            JLabel labelPrecoCompra = new JLabel(Integer.toString(app.getListaPedidos().size() * 10) + "0,00 R$");
+            labelPrecoCompra.setBounds(120, 560,
+                    100,
+                    80);
+
+            // Colocando o fundo do total da compra
+            ImageIcon fundoTotalCompra = new ImageIcon("lib/espaco_total_compra.jpg");
+            JLabel labelEspacoTotal = new JLabel(fundoTotalCompra);
+            labelEspacoTotal.setBounds(110, 560, 100, 80);
+
+            // Atualizando a altura para o próximo componente
+            setHeightComponentCarrinho(heightComponentCarrinho + labelImagemPedidoCarrinho.getHeight() + 2);
+
+            // Adicionando todos os itens ao layeredPane
+            this.layeredPane.add(labelImagemPedidoCarrinho, Integer.valueOf(3));
+            this.layeredPane.add(textoTamanhoSelecionado, Integer.valueOf(4));
+            this.layeredPane.add(labelPrecoCompra, Integer.valueOf(app.getListaPedidos().size() + 3));
+            this.layeredPane.add(labelEspacoTotal, Integer.valueOf(app.getListaPedidos().size() + 3));
+
+            numeroPedidos++;
+
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == botaoVoltar) {
             app.mostrarTela("Essentials");
-        } else if(e.getSource() == botaoFinalizarCompra){
-             JOptionPane.showMessageDialog(null, "Pedido realizado com Sucesso! Informações de pagamento no email.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                app.mostrarTela("Home");
+        } else if (e.getSource() == botaoFinalizarCompra) {
+            JOptionPane.showMessageDialog(null, "Pedido realizado com Sucesso! Informações de pagamento no email.",
+                    "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            app.mostrarTela("Home");
         }
     }
 

@@ -20,13 +20,16 @@ public class Main extends JFrame {
     public ArrayList<Pedido> listaPedidos;
 
     public Main() {
-        //instanciando layout e panel
+        // instanciando layout e panel
         layoutTelas = new CardLayout();
         painelPrincipal = new JPanel(layoutTelas);
         framePrincipal = new JFrame();
 
-        //instanciando telas
-        barraNavegacao = new BarraNavegacao(this); 
+        // Criando a lista dos pedidos
+        listaPedidos = new ArrayList<Pedido>();
+
+        // instanciando telas
+        barraNavegacao = new BarraNavegacao(this);
         telaHome = new TelaHome(false, this);
         telaLoginCadastro = new TelaLoginCadastro(false, this);
         telaEssentials = new TelaEssentials(true, this);
@@ -36,7 +39,7 @@ public class Main extends JFrame {
         telaCamisetaBranca = new TelaProduto(false, "branca", this);
         telaCarrinho = new TelaCarrinho(false, this);
 
-        //Adicionando telas ao painel 
+        // Adicionando telas ao painel
         painelPrincipal.add(telaHome.getLayeredPane(), "Home");
         painelPrincipal.add(telaLoginCadastro.getPainelLoginCadastro(), "Login");
         painelPrincipal.add(telaEssentials.getEssentialsPane(), "Essentials");
@@ -47,24 +50,25 @@ public class Main extends JFrame {
         painelPrincipal.add(barraNavegacao.getBarraNavPanel(), "Barra");
         painelPrincipal.add(telaCarrinho.getLayeredPane(), "Carrinho");
 
-        //Settando frame do aplicativo
+        // Settando frame do aplicativo
         framePrincipal.getContentPane().add(painelPrincipal);
         framePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         framePrincipal.setSize(390, 844);
         framePrincipal.setLocationRelativeTo(null);
         framePrincipal.setVisible(true);
 
-        //Criando a lista dos pedidos
-        listaPedidos = new ArrayList<Pedido>();
-
     }
 
-    public void mostrarTela(String nomeTela) { 
+    public void mostrarTela(String nomeTela) {
         layoutTelas.show(painelPrincipal, nomeTela);
     }
 
-    public ArrayList<Pedido> getListaPedidos(){
+    public ArrayList<Pedido> getListaPedidos() {
         return this.listaPedidos;
+    }
+
+    public TelaCarrinho getTelaCarrinho() {
+        return this.telaCarrinho;
     }
 
     public static void main(String[] args) {
